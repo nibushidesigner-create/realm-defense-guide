@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" role="img" aria-label="World 7 stage 225 map placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1712"/><stop offset="1" stop-color="#17231d"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="800" height="380" fill="url(#bg)"/>
+  <g opacity="0.22" stroke="#f4efe2" stroke-width="1">
+    <path d="M0 320 H800"/><path d="M0 250 H800"/><path d="M0 180 H800"/><path d="M0 110 H800"/>
+    <path d="M90 0 V380"/><path d="M210 0 V380"/><path d="M330 0 V380"/><path d="M450 0 V380"/><path d="M570 0 V380"/><path d="M690 0 V380"/>
+  </g>
+  <path d="M70 292 C180 230 170 108 310 108 C438 108 424 258 562 220 C650 196 684 128 730 72" fill="none" stroke="#111b16" stroke-width="52" stroke-linecap="round"/>
+  <path d="M70 292 C180 230 170 108 310 108 C438 108 424 258 562 220 C650 196 684 128 730 72" fill="none" stroke="#58b39a" stroke-width="30" stroke-linecap="round" filter="url(#glow)"/>
+  <g fill="#101814" stroke="#e0b74f" stroke-width="4">
+    <circle cx="118" cy="88" r="18"/><circle cx="224" cy="226" r="18"/><circle cx="370" cy="142" r="18"/><circle cx="520" cy="244" r="18"/><circle cx="672" cy="132" r="18"/>
+  </g>
+  <text x="36" y="54" fill="#f4efe2" font-family="Arial, sans-serif" font-size="26" font-weight="700">World 7 · Stage 225</text>
+  <text x="36" y="334" fill="#b9c2b1" font-family="Arial, sans-serif" font-size="17">Map image pending · tactical placeholder</text>
+</svg>

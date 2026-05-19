@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Realm Defense Guide Database</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#overview" aria-label="Realm Defense guide home" data-i18n-aria="brandAria">
+        <span class="brand-mark">RD</span>
+        <span>
+          <strong>Realm Defense</strong>
+          <small data-i18n="brandSub">Guide Database</small>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation" data-i18n-aria="navAria">
+        <a href="#heroes" data-i18n="navHeroes">Heroes</a>
+        <a href="#levels" data-i18n="navLevels">Stages</a>
+        <a href="#towers" data-i18n="navTowers">Towers</a>
+        <a href="#builds" data-i18n="navBuilds">Lineups</a>
+      </nav>
+      <div class="language-switch" aria-label="Language switcher" data-i18n-aria="languageAria">
+        <button class="language-option active" type="button" data-lang="en">EN</button>
+        <button class="language-option" type="button" data-lang="zh">中文</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-shell" id="overview">
+        <div class="hero-art" aria-hidden="true">
+          <div class="sun"></div>
+          <div class="lane lane-a"></div>
+          <div class="lane lane-b"></div>
+          <div class="tower tower-a"></div>
+          <div class="tower tower-b"></div>
+          <div class="tower tower-c"></div>
+          <div class="crystal crystal-a"></div>
+          <div class="crystal crystal-b"></div>
+        </div>
+        <div class="hero-copy reveal">
+          <p class="eyebrow" data-i18n="heroEyebrow">Hero growth · Stage tactics · Tower rhythm</p>
+          <h1 data-i18n="heroTitle">Realm Defense Guide Database</h1>
+          <p>
+            <span data-i18n="heroIntro">Covers 24 heroes, 7 worlds, and 240 campaign stages, with practical positioning, tower upgrades, and skill timing.</span>
+          </p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#levels" data-i18n="heroPrimary">View Stage Guides</a>
+            <a class="secondary-action" href="#heroes" data-i18n="heroSecondary">Analyze Heroes</a>
+          </div>
+        </div>
+        <aside class="battle-brief reveal" aria-label="Featured guide note" data-i18n-aria="briefAria">
+          <span data-i18n="briefLabel">Recommended Read</span>
+          <strong data-i18n="briefTitle">Identify enemy lanes first, then choose control heroes and tower upgrade order.</strong>
+          <p data-i18n="briefBody">New players should raise stable wave-clear and control heroes first, then add single-target burst and Boss tools later.</p>
+        </aside>
+      </section>
+
+      <section class="section-panel" id="heroes">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Hero Index</p>
+          <h2 data-i18n="heroesTitle">Hero Ability Analysis</h2>
+          <p data-i18n="heroesIntro">Pick a hero to view unlocks, active skill, role, strong scenarios, skill value, and upgrade priority.</p>
+        </div>
+        <div class="tool-row reveal">
+          <label>
+            <span data-i18n="heroSearchLabel">Search heroes</span>
+            <input id="heroSearch" type="search" placeholder="Type a hero, role, or keyword" data-i18n-placeholder="heroSearchPlaceholder" />
+          </label>
+          <label>
+            <span data-i18n="roleFilterLabel">Role filter</span>
+            <select id="roleFilter">
+              <option value="all" data-i18n="allRoles">All roles</option>
+            </select>
+          </label>
+        </div>
+        <div class="hero-layout" id="heroReader">
+          <div class="hero-list reveal" id="heroList" aria-label="Hero list" data-i18n-aria="heroListAria"></div>
+          <article class="hero-detail reveal" id="heroDetail" aria-live="polite"></article>
+        </div>
+      </section>
+
+      <section class="section-panel dark-band" id="levels">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Stage Guide</p>
+          <h2 data-i18n="levelsTitle">Stage Guides</h2>
+          <p data-i18n="levelsIntro">Stages 1-240 all have guide entries; Boss and milestone stages include deeper positioning, tower, and skill-timing notes.</p>
+        </div>
+        <div class="world-tabs reveal" id="worldTabs" aria-label="World tabs"></div>
+        <div class="tool-row level-tool-row reveal">
+          <label>
+            <span data-i18n="threatFilterLabel">Threat</span>
+            <select id="threatFilter">
+              <option value="all" data-i18n="allThreats">All threats</option>
+            </select>
+          </label>
+          <label>
+            <span data-i18n="levelSearchLabel">Search stages</span>
+            <input id="levelSearch" type="search" placeholder="e.g. 170, Boss, flying, World 3" data-i18n-placeholder="levelSearchPlaceholder" />
+          </label>
+        </div>
+        <div class="level-grid reveal" id="levelGrid"></div>
+      </section>
+
+      <section class="split-section" id="towers">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Tower Rhythm</p>
+          <h2 data-i18n="towersTitle">World & Tower Overview</h2>
+          <p data-i18n="towersIntro">Each world has different tower mechanics. First define the main kill zone, then spend gold where enemies stay in range longer.</p>
+        </div>
+        <div class="world-guide reveal" id="worldGuide"></div>
+      </section>
+
+      <section class="section-panel" id="builds">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Lineup Notes</p>
+          <h2 data-i18n="buildsTitle">Lineup Planning</h2>
+          <p data-i18n="buildsIntro">Different maps ask different questions: flying enemies, bulky waves, split lanes, and Boss burst each need different hero combinations.</p>
+        </div>
+        <div class="build-matrix reveal">
+          <button class="build-tab active" data-build="starter" data-i18n="buildTabStarter">Starter Push</button>
+          <button class="build-tab" data-build="control" data-i18n="buildTabControl">Control & Safety</button>
+          <button class="build-tab" data-build="boss" data-i18n="buildTabBoss">Boss Handling</button>
+          <button class="build-tab" data-build="w6" data-i18n="buildTabW6">Late Tower Support</button>
+          <button class="build-tab" data-build="w7" data-i18n="buildTabW7">World 7</button>
+        </div>
+        <article class="build-detail reveal" id="buildDetail"></article>
+      </section>
+    </main>
+
+    <footer>
+      <strong data-i18n="footerTitle">Realm Defense Guide Database</strong>
+      <span class="source-links">
+        <span data-i18n="sourcesLabel">Sources:</span>
+        <a href="https://realm-defense-hero-legends-td.fandom.com/wiki/Heroes" data-i18n="sourceHeroes">Hero data</a>
+        <a href="https://realm-defense-hero-legends-td.fandom.com/wiki/Category:World" data-i18n="sourceWorlds">World unlocks</a>
+        <a href="https://realm-defense-hero-legends-td.fandom.com/wiki/Category:Maps" data-i18n="sourceMaps">Map images</a>
+        <a href="https://apps.apple.com/us/app/realm-defense-hero-legends-td/id1197076384" data-i18n="sourceVersions">Version history</a>
+      </span>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
