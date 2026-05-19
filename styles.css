@@ -406,6 +406,16 @@ h3 {
   margin: 0 0 18px;
 }
 
+.tower-guide-panel {
+  display: grid;
+  gap: 12px;
+}
+
+.compact-world-tabs {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 0;
+}
+
 .world-tab {
   display: grid;
   gap: 4px;
@@ -1071,6 +1081,10 @@ footer strong {
 
   .world-tabs {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .compact-world-tabs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 

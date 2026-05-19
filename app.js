@@ -807,6 +807,7 @@ const uiText = {
     brandSub: "Guide Database",
     navAria: "Primary navigation",
     languageAria: "Language switcher",
+    towerWorldTabsAria: "Tower overview world tabs",
     navHeroes: "Heroes",
     navLevels: "Stages",
     navTowers: "Towers",
@@ -876,6 +877,7 @@ const uiText = {
     brandSub: "攻略资料库",
     navAria: "主导航",
     languageAria: "语言切换",
+    towerWorldTabsAria: "防御塔总览世界切换",
     navHeroes: "英雄",
     navLevels: "关卡",
     navTowers: "防御塔",
@@ -1377,6 +1379,7 @@ const state = {
   activeHero: heroes[0].id,
   activeBuild: "starter",
   activeWorld: "世界 1",
+  activeTowerWorld: "世界 1",
   levelLimit: 24,
 };
 
@@ -1401,6 +1404,7 @@ const heroSearch = document.querySelector("#heroSearch");
 const roleFilter = document.querySelector("#roleFilter");
 const levelGrid = document.querySelector("#levelGrid");
 const worldTabs = document.querySelector("#worldTabs");
+const towerWorldTabs = document.querySelector("#towerWorldTabs");
 const threatFilter = document.querySelector("#threatFilter");
 const levelSearch = document.querySelector("#levelSearch");
 const buildDetail = document.querySelector("#buildDetail");
@@ -1527,10 +1531,26 @@ function renderWorldTabs() {
     .join("");
 }
 
+function renderTowerWorldTabs() {
+  towerWorldTabs.innerHTML = worldGuides
+    .map((world) => {
+      const displayWorld = localWorld(world);
+      const isActive = world.world === state.activeTowerWorld;
+      return `
+        <button class="world-tab ${isActive ? "active" : ""}" type="button" data-tower-world="${world.world}">
+          <strong>${displayWorld.world}</strong>
+          <span>${world.start}-${world.end}</span>
+        </button>
+      `;
+    })
+    .join("");
+}
+
 function setLanguage(lang) {
   state.lang = lang;
   applyUiText();
   renderWorldTabs();
+  renderTowerWorldTabs();
   renderFilters();
   renderHeroList();
   renderLevels();
@@ -1673,11 +1693,9 @@ function renderLevels() {
 }
 
 function renderWorldGuide() {
-  worldGuide.innerHTML = worldGuides
-    .map(
-      (world) => {
-        const displayWorld = localWorld(world);
-        return `
+  const world = worldGuides.find((item) => item.world === state.activeTowerWorld) || worldGuides[0];
+  const displayWorld = localWorld(world);
+  worldGuide.innerHTML = `
         <article class="world-card">
           <header>
             <div>
@@ -1695,9 +1713,6 @@ function renderWorldGuide() {
           </div>
         </article>
       `;
-      },
-    )
-    .join("");
 }
 
 function renderBuild() {
@@ -1803,6 +1818,14 @@ function bindEvents() {
     renderLevels();
   });
 
+  towerWorldTabs.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-tower-world]");
+    if (!button) return;
+    state.activeTowerWorld = button.dataset.towerWorld;
+    renderTowerWorldTabs();
+    renderWorldGuide();
+  });
+
   document.querySelectorAll(".build-tab").forEach((button) => {
     button.addEventListener("click", () => {
       state.activeBuild = button.dataset.build;
@@ -1830,6 +1853,7 @@ function revealOnScroll() {
 
 applyUiText();
 renderWorldTabs();
+renderTowerWorldTabs();
 renderFilters();
 bindEvents();
 renderHeroList();
