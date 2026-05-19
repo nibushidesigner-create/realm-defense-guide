@@ -1027,6 +1027,15 @@ footer strong {
   color: var(--ink);
 }
 
+.fan-disclaimer {
+  flex-basis: 100%;
+  margin: 0;
+  max-width: 900px;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: #91a69a;
+}
+
 .source-links {
   display: flex;
   flex-wrap: wrap;
