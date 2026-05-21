@@ -532,7 +532,7 @@
             <strong>Traffic Console</strong>
             <span>Endogenous Security UI dashboard</span>
           </div>
-          <a class="es-side-link" href="./index.html#overview">返回网站首页</a>
+          <a class="es-side-link" href="./index.html">返回网站首页</a>
           <a class="es-side-link" href="./blog/realm-defense-guide.html">查看博客页</a>
           <button class="es-side-link" type="button" id="logoutButton" style="border:0;width:100%;text-align:left;color:#fff;">退出登录</button>
           <p class="es-side-note">前端密码门禁用于隐藏入口；GitHub Pages 无法提供真正的服务器级权限控制。</p>
@@ -666,7 +666,7 @@
 
   function seedData() {
     const now = Date.now();
-    const pages = ["/index.html", "/index.html#heroes", "/index.html#levels", "/blog/realm-defense-guide.html"];
+    const pages = ["/index.html", "/heroes.html", "/stages.html", "/towers.html", "/lineups.html", "/blog/realm-defense-guide.html"];
     const types = ["page_view", "interaction", "section_view", "page_leave"];
     const timezones = ["Asia/Shanghai", "America/New_York", "Europe/London", "Asia/Tokyo", "America/Los_Angeles", "Australia/Sydney"];
     const events = [];
@@ -689,7 +689,7 @@
         viewport: { width: 390 + Math.floor(Math.random() * 900), height: 844 },
         payload: {
           label: ["Heroes", "Stages", "Lineups", "Open the Guide"][Math.floor(Math.random() * 4)],
-          section: ["heroes", "levels", "towers", "builds"][Math.floor(Math.random() * 4)],
+          section: ["heroes", "stages", "towers", "lineups"][Math.floor(Math.random() * 4)],
           durationSeconds: 12 + Math.floor(Math.random() * 160),
           percent: 20 + Math.floor(Math.random() * 80),
         },

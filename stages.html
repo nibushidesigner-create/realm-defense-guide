@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-adsense-account" content="ca-pub-8617360599768528" />
+    <title>Stage Guides · Realm Defense Guide</title>
+    <meta
+      name="description"
+      content="Realm Defense stage guide with world tabs, campaign map images, threat filters, and strategy notes for levels 1 through 240."
+    />
+    <link rel="canonical" href="https://realmtdguide.com/stages.html" />
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8617360599768528"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page-title="levelsTitle">
+    <header class="topbar">
+      <a class="brand" href="./index.html" aria-label="Realm Defense guide home" data-i18n-aria="brandAria">
+        <span class="brand-mark">RD</span>
+        <span>
+          <strong>Realm Defense</strong>
+          <small data-i18n="brandSub">Guide Database</small>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation" data-i18n-aria="navAria">
+        <a href="./heroes.html" data-i18n="navHeroes">Heroes</a>
+        <a class="active" href="./stages.html" data-i18n="navLevels">Stages</a>
+        <a href="./towers.html" data-i18n="navTowers">Towers</a>
+        <a href="./lineups.html" data-i18n="navBuilds">Lineups</a>
+      </nav>
+      <div class="language-switch" aria-label="Language switcher" data-i18n-aria="languageAria">
+        <button class="language-option active" type="button" data-lang="en">EN</button>
+        <button class="language-option" type="button" data-lang="zh">中文</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="section-panel dark-band page-panel" id="levels">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Stage Guide</p>
+          <h1 data-i18n="levelsTitle">Stage Guides</h1>
+          <p data-i18n="levelsIntro">Stages 1-240 all have guide entries; Boss and milestone stages include deeper positioning, tower, and skill-timing notes.</p>
+        </div>
+        <div class="world-tabs reveal" id="worldTabs" aria-label="World tabs"></div>
+        <div class="tool-row level-tool-row reveal">
+          <label>
+            <span data-i18n="threatFilterLabel">Threat</span>
+            <select id="threatFilter">
+              <option value="all" data-i18n="allThreats">All threats</option>
+            </select>
+          </label>
+          <label>
+            <span data-i18n="levelSearchLabel">Search stages</span>
+            <input id="levelSearch" type="search" placeholder="e.g. 170, Boss, flying, World 3" data-i18n-placeholder="levelSearchPlaceholder" />
+          </label>
+        </div>
+        <div class="level-grid reveal" id="levelGrid"></div>
+      </section>
+    </main>
+
+    <footer>
+      <strong data-i18n="footerTitle">Realm Defense Guide Database</strong>
+      <span class="source-links">
+        <span data-i18n="sourcesLabel">Sources:</span>
+        <a href="https://realm-defense-hero-legends-td.fandom.com/wiki/Heroes" data-i18n="sourceHeroes">Hero data</a>
+        <a href="https://realm-defense-hero-legends-td.fandom.com/wiki/Category:World" data-i18n="sourceWorlds">World unlocks</a>
+        <a href="https://realm-defense-hero-legends-td.fandom.com/wiki/Category:Maps" data-i18n="sourceMaps">Map images</a>
+        <a href="https://apps.apple.com/us/app/realm-defense-hero-legends-td/id1197076384" data-i18n="sourceVersions">Version history</a>
+        <a href="./blog/realm-defense-guide.html">Blog</a>
+      </span>
+      <p class="fan-disclaimer" data-i18n="fanDisclaimer">Unofficial fan guide. Realm Defense and related assets belong to their respective owners; this site is not affiliated with or endorsed by the game publisher.</p>
+    </footer>
+
+    <script src="./traffic-config.js"></script>
+    <script src="./traffic-analytics.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

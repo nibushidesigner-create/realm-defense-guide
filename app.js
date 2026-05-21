@@ -1479,7 +1479,8 @@ function localLevel(level) {
 
 function applyUiText() {
   document.documentElement.lang = isEnglish() ? "en" : "zh-CN";
-  document.title = t("title");
+  const pageTitleKey = document.body.dataset.pageTitle;
+  document.title = pageTitleKey ? `${t(pageTitleKey)} · Realm Defense Guide` : t("title");
   document.querySelectorAll("[data-i18n]").forEach((node) => {
     const value = t(node.dataset.i18n);
     if (typeof value === "string") node.textContent = value;
@@ -1502,6 +1503,7 @@ function uniqueValues(items, key) {
 }
 
 function setSelectOptions(select, allLabel, values, labelFn) {
+  if (!select) return;
   const previous = select.value || "all";
   select.innerHTML = `<option value="all">${allLabel}</option>${values
     .map((value) => `<option value="${value}">${labelFn(value)}</option>`)
@@ -1510,15 +1512,18 @@ function setSelectOptions(select, allLabel, values, labelFn) {
 }
 
 function renderFilters() {
-  setSelectOptions(roleFilter, t("allRoles"), uniqueValues(heroes, "role"), translateRole);
-  const worldThreats = uniqueValues(
-    levels.filter((level) => level.world === state.activeWorld),
-    "threat",
-  );
-  setSelectOptions(threatFilter, t("allThreats"), worldThreats, translateThreat);
+  if (roleFilter) setSelectOptions(roleFilter, t("allRoles"), uniqueValues(heroes, "role"), translateRole);
+  if (threatFilter) {
+    const worldThreats = uniqueValues(
+      levels.filter((level) => level.world === state.activeWorld),
+      "threat",
+    );
+    setSelectOptions(threatFilter, t("allThreats"), worldThreats, translateThreat);
+  }
 }
 
 function renderWorldTabs() {
+  if (!worldTabs) return;
   worldTabs.innerHTML = worldGuides
     .map((world) => {
       const displayWorld = localWorld(world);
@@ -1534,6 +1539,7 @@ function renderWorldTabs() {
 }
 
 function renderTowerWorldTabs() {
+  if (!towerWorldTabs) return;
   towerWorldTabs.innerHTML = worldGuides
     .map((world) => {
       const displayWorld = localWorld(world);
@@ -1561,6 +1567,7 @@ function setLanguage(lang) {
 }
 
 function renderHeroList() {
+  if (!heroList || !heroSearch || !roleFilter) return;
   const query = heroSearch.value.trim().toLowerCase();
   const role = roleFilter.value;
   const filtered = heroes.filter((hero) => {
@@ -1598,6 +1605,7 @@ function renderHeroList() {
 }
 
 function renderHeroDetail() {
+  if (!heroDetail) return;
   const hero = heroes.find((item) => item.id === state.activeHero) || heroes[0];
   const displayHero = localHero(hero);
   heroDetail.innerHTML = `
@@ -1641,6 +1649,7 @@ function renderHeroDetail() {
 }
 
 function renderLevels() {
+  if (!levelGrid || !threatFilter || !levelSearch) return;
   const threat = threatFilter.value;
   const query = levelSearch.value.trim().toLowerCase();
   const filtered = levels.filter((level) => {
@@ -1695,6 +1704,7 @@ function renderLevels() {
 }
 
 function renderWorldGuide() {
+  if (!worldGuide) return;
   const world = worldGuides.find((item) => item.world === state.activeTowerWorld) || worldGuides[0];
   const displayWorld = localWorld(world);
   worldGuide.innerHTML = `
@@ -1718,6 +1728,7 @@ function renderWorldGuide() {
 }
 
 function renderBuild() {
+  if (!buildDetail) return;
   const build = localBuild(state.activeBuild);
   const buildHeroes = build.heroes.map((id) => heroById(id)).filter(Boolean);
   buildDetail.innerHTML = `
@@ -1784,49 +1795,57 @@ function renderBuild() {
 }
 
 function bindEvents() {
-  heroList.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-hero]");
-    if (!button) return;
-    state.activeHero = button.dataset.hero;
-    renderHeroList();
-  });
+  if (heroList) {
+    heroList.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-hero]");
+      if (!button) return;
+      state.activeHero = button.dataset.hero;
+      renderHeroList();
+    });
+  }
 
-  [heroSearch, roleFilter].forEach((element) => element.addEventListener("input", renderHeroList));
-  [threatFilter, levelSearch].forEach((element) =>
+  [heroSearch, roleFilter].filter(Boolean).forEach((element) => element.addEventListener("input", renderHeroList));
+  [threatFilter, levelSearch].filter(Boolean).forEach((element) =>
     element.addEventListener("input", () => {
       state.levelLimit = levelPageSize;
       renderLevels();
     }),
   );
 
-  levelGrid.addEventListener("click", (event) => {
-    if (!event.target.closest("[data-load-more-levels]")) return;
-    state.levelLimit += levelPageSize;
-    renderLevels();
-  });
+  if (levelGrid) {
+    levelGrid.addEventListener("click", (event) => {
+      if (!event.target.closest("[data-load-more-levels]")) return;
+      state.levelLimit += levelPageSize;
+      renderLevels();
+    });
+  }
 
   document.querySelectorAll(".language-option").forEach((button) => {
     button.addEventListener("click", () => setLanguage(button.dataset.lang));
   });
 
-  worldTabs.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-world]");
-    if (!button) return;
-    state.activeWorld = button.dataset.world;
-    state.levelLimit = levelPageSize;
-    threatFilter.value = "all";
-    renderWorldTabs();
-    renderFilters();
-    renderLevels();
-  });
+  if (worldTabs) {
+    worldTabs.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-world]");
+      if (!button) return;
+      state.activeWorld = button.dataset.world;
+      state.levelLimit = levelPageSize;
+      if (threatFilter) threatFilter.value = "all";
+      renderWorldTabs();
+      renderFilters();
+      renderLevels();
+    });
+  }
 
-  towerWorldTabs.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-tower-world]");
-    if (!button) return;
-    state.activeTowerWorld = button.dataset.towerWorld;
-    renderTowerWorldTabs();
-    renderWorldGuide();
-  });
+  if (towerWorldTabs) {
+    towerWorldTabs.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-tower-world]");
+      if (!button) return;
+      state.activeTowerWorld = button.dataset.towerWorld;
+      renderTowerWorldTabs();
+      renderWorldGuide();
+    });
+  }
 
   document.querySelectorAll(".build-tab").forEach((button) => {
     button.addEventListener("click", () => {
