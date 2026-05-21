@@ -242,31 +242,19 @@ select {
 
 .es-map-frame {
   min-width: 0;
+  height: 430px;
+  border: 1px solid var(--es-border-soft);
+  border-radius: var(--es-radius-lg);
+  background: linear-gradient(180deg, #f7fbff 0%, #eef5ff 100%);
+  overflow: hidden;
 }
 
-.es-map-ocean {
-  fill: #f7fbff;
-}
-
-.es-map-grid {
-  stroke: rgba(22, 103, 255, 0.12);
-  stroke-width: 1;
-}
-
-.es-map-land {
-  fill: #dce8f8;
-  stroke: rgba(22, 103, 255, 0.18);
-  stroke-width: 1.5;
-}
-
-.es-map-pulse {
-  fill: rgba(22, 103, 255, 0.12);
-}
-
-.es-map-point {
-  fill: var(--es-brand-primary);
-  stroke: #ffffff;
-  stroke-width: 3;
+.es-map-loading {
+  display: grid;
+  height: 100%;
+  place-items: center;
+  color: var(--es-muted);
+  font-size: 13px;
 }
 
 .es-map-list {
@@ -413,6 +401,10 @@ select {
 
   .es-map-layout {
     grid-template-columns: 1fr;
+  }
+
+  .es-map-frame {
+    height: 340px;
   }
 }
 

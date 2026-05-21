@@ -361,47 +361,12 @@
     return Object.values(buckets).sort((a, b) => b.count - a.count);
   }
 
-  function worldPointMap(items) {
-    const width = 900;
-    const height = 430;
-    const project = (lon, lat) => ({
-      x: ((lon + 180) / 360) * width,
-      y: ((90 - lat) / 180) * height,
-    });
-    const max = Math.max(...items.map((item) => item.count), 1);
+  function geoMapPanel(items) {
     const topItems = items.slice(0, 6);
-    const pointSvg = items
-      .map((item) => {
-        const point = project(item.lon, item.lat);
-        const radius = Math.min(22, 6 + Math.sqrt(item.count / max) * 14);
-        return `
-          <g>
-            <circle class="es-map-pulse" cx="${point.x}" cy="${point.y}" r="${radius + 8}" />
-            <circle class="es-map-point" cx="${point.x}" cy="${point.y}" r="${radius}" />
-            <title>${item.label}: ${item.count} page views</title>
-          </g>
-        `;
-      })
-      .join("");
-
     return `
       <div class="es-map-layout">
-        <div class="es-map-frame">
-          <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Global visitor distribution map">
-            <rect width="${width}" height="${height}" rx="8" class="es-map-ocean" />
-            ${[-120, -60, 0, 60, 120]
-              .map((lon) => `<line class="es-map-grid" x1="${project(lon, 0).x}" y1="24" x2="${project(lon, 0).x}" y2="${height - 24}" />`)
-              .join("")}
-            ${[-45, 0, 45]
-              .map((lat) => `<line class="es-map-grid" x1="24" y1="${project(0, lat).y}" x2="${width - 24}" y2="${project(0, lat).y}" />`)
-              .join("")}
-            <path class="es-map-land" d="M104 128c42-48 120-56 166-20 38 30 22 78-18 96-54 24-122 8-154-28-16-18-14-34 6-48Z" />
-            <path class="es-map-land" d="M214 238c42-10 90 14 102 52 16 50-22 92-66 90-36-2-60-36-58-76 2-30 10-54 22-66Z" />
-            <path class="es-map-land" d="M424 108c92-46 212-28 282 34 56 50 42 126-40 148-96 26-218-2-284-60-44-38-36-92 42-122Z" />
-            <path class="es-map-land" d="M452 248c46-18 104 0 132 42 30 46 8 98-42 114-46 14-92-20-104-70-8-34-2-70 14-86Z" />
-            <path class="es-map-land" d="M684 276c46-20 108-4 130 34 18 32 0 72-40 82-42 10-86-10-106-44-16-28-10-56 16-72Z" />
-            ${pointSvg || `<text x="${width / 2}" y="${height / 2}" text-anchor="middle" class="es-axis">No location data yet</text>`}
-          </svg>
+        <div class="es-map-frame" id="geoMap">
+          <div class="es-map-loading">Loading world map...</div>
         </div>
         <div class="es-map-list">
           ${topItems
@@ -418,6 +383,93 @@
         </div>
       </div>
     `;
+  }
+
+  function renderGeoMap(items) {
+    const container = document.getElementById("geoMap");
+    if (!container) return;
+    if (!window.echarts) {
+      container.innerHTML = `<div class="es-empty">ECharts 地图资源加载失败，请刷新页面后重试。</div>`;
+      return;
+    }
+
+    const max = Math.max(...items.map((item) => item.count), 1);
+    const chart = echarts.init(container, null, { renderer: "canvas" });
+    const values = items.map((item) => ({
+      name: item.label,
+      value: [item.lon, item.lat, item.count],
+    }));
+
+    chart.setOption({
+      backgroundColor: "transparent",
+      tooltip: {
+        trigger: "item",
+        formatter(params) {
+          if (params.seriesType !== "effectScatter") return params.name || "";
+          return `${params.name}<br/>Page views: ${params.value[2]}`;
+        },
+      },
+      geo: {
+        map: "world",
+        roam: true,
+        zoom: 1.12,
+        top: 18,
+        bottom: 12,
+        itemStyle: {
+          areaColor: "#DCE8F8",
+          borderColor: "rgba(22, 103, 255, 0.24)",
+          borderWidth: 0.8,
+        },
+        emphasis: {
+          itemStyle: {
+            areaColor: "#C7DAF6",
+          },
+          label: {
+            show: false,
+          },
+        },
+      },
+      series: [
+        {
+          name: "Page views",
+          type: "effectScatter",
+          coordinateSystem: "geo",
+          data: values,
+          symbolSize(value) {
+            return Math.max(8, Math.min(26, 8 + Math.sqrt(value[2] / max) * 18));
+          },
+          rippleEffect: {
+            brushType: "stroke",
+            scale: 3.4,
+          },
+          itemStyle: {
+            color: "#1667ff",
+            shadowBlur: 12,
+            shadowColor: "rgba(22, 103, 255, 0.42)",
+          },
+          label: {
+            show: true,
+            formatter: "{b}",
+            position: "right",
+            color: "#1f1f1f",
+            fontSize: 11,
+          },
+          emphasis: {
+            scale: true,
+          },
+        },
+      ],
+    });
+
+    window.setTimeout(() => chart.resize(), 0);
+    if (!renderGeoMap.resizeBound) {
+      window.addEventListener("resize", () => {
+        const current = document.getElementById("geoMap");
+        const instance = current && echarts.getInstanceByDom(current);
+        if (instance) instance.resize();
+      });
+      renderGeoMap.resizeBound = true;
+    }
   }
 
   function summarize(events) {
@@ -587,7 +639,7 @@
       <section class="es-card es-card-padding" style="margin-top:16px;">
         <h2>Global visitor distribution</h2>
         <p class="es-muted" style="margin:8px 0 0;">按浏览器时区估算地区分布，不采集精确 IP 地址。</p>
-        <div class="es-chart es-map-chart">${worldPointMap(summary.geoItems)}</div>
+        <div class="es-chart es-map-chart">${geoMapPanel(summary.geoItems)}</div>
       </section>
       <section class="es-grid es-charts" style="margin-top:16px;">
         <article class="es-card es-card-padding">
@@ -609,6 +661,7 @@
         </div>
       </section>
     `;
+    renderGeoMap(summary.geoItems);
   }
 
   function seedData() {
