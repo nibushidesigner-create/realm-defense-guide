@@ -8,11 +8,86 @@
   }
 
   async function sha256(text) {
+    if (!window.crypto || !crypto.subtle) return sha256Fallback(text);
     const data = new TextEncoder().encode(text);
     const hash = await crypto.subtle.digest("SHA-256", data);
     return Array.from(new Uint8Array(hash))
       .map((byte) => byte.toString(16).padStart(2, "0"))
       .join("");
+  }
+
+  function sha256Fallback(text) {
+    const rightRotate = (value, amount) => (value >>> amount) | (value << (32 - amount));
+    const mathPow = Math.pow;
+    const maxWord = mathPow(2, 32);
+    const lengthProperty = "length";
+    const ascii = unescape(encodeURIComponent(text));
+    const words = [];
+    let hash = sha256Fallback.h;
+    let k = sha256Fallback.k;
+    let result = "";
+    let primeCounter = 0;
+    const isComposite = {};
+
+    if (!hash) {
+      hash = sha256Fallback.h = [];
+      k = sha256Fallback.k = [];
+      for (let candidate = 2; primeCounter < 64; candidate += 1) {
+        if (!isComposite[candidate]) {
+          for (let multiple = 0; multiple < 313; multiple += candidate) {
+            isComposite[multiple] = candidate;
+          }
+          if (primeCounter < 8) hash[primeCounter] = (mathPow(candidate, 0.5) * maxWord) | 0;
+          k[primeCounter] = (mathPow(candidate, 1 / 3) * maxWord) | 0;
+          primeCounter += 1;
+        }
+      }
+    }
+
+    let message = `${ascii}\x80`;
+    const bitLength = ascii[lengthProperty] * 8;
+    while ((message[lengthProperty] % 64) - 56) message += "\x00";
+    for (let index = 0; index < message[lengthProperty]; index += 1) {
+      const charCode = message.charCodeAt(index);
+      words[index >> 2] |= charCode << (((3 - index) % 4) * 8);
+    }
+    words[words[lengthProperty]] = (bitLength / maxWord) | 0;
+    words[words[lengthProperty]] = bitLength;
+
+    for (let block = 0; block < words[lengthProperty];) {
+      const w = words.slice(block, (block += 16));
+      const oldHash = hash.slice(0);
+      hash = hash.slice(0, 8);
+      for (let index = 0; index < 64; index += 1) {
+        const a = hash[0];
+        const e = hash[4];
+        if (index >= 16) {
+          const s0 = rightRotate(w[index - 15], 7) ^ rightRotate(w[index - 15], 18) ^ (w[index - 15] >>> 3);
+          const s1 = rightRotate(w[index - 2], 17) ^ rightRotate(w[index - 2], 19) ^ (w[index - 2] >>> 10);
+          w[index] = (w[index - 16] + s0 + w[index - 7] + s1) | 0;
+        }
+
+        const ch = (e & hash[5]) ^ (~e & hash[6]);
+        const maj = (a & hash[1]) ^ (a & hash[2]) ^ (hash[1] & hash[2]);
+        const sigma0 = rightRotate(a, 2) ^ rightRotate(a, 13) ^ rightRotate(a, 22);
+        const sigma1 = rightRotate(e, 6) ^ rightRotate(e, 11) ^ rightRotate(e, 25);
+        const temp1 = (hash[7] + sigma1 + ch + k[index] + w[index]) | 0;
+        const temp2 = (sigma0 + maj) | 0;
+
+        hash = [(temp1 + temp2) | 0].concat(hash);
+        hash[4] = (hash[4] + temp1) | 0;
+      }
+      for (let index = 0; index < 8; index += 1) {
+        hash[index] = (hash[index] + oldHash[index]) | 0;
+      }
+    }
+
+    for (let index = 0; index < 8; index += 1) {
+      for (let byte = 3; byte + 1; byte -= 1) {
+        result += ((hash[index] >> (byte * 8)) & 255).toString(16).padStart(2, "0");
+      }
+    }
+    return result;
   }
 
   function renderLogin() {
@@ -33,8 +108,14 @@
     document.getElementById("loginForm").addEventListener("submit", async (event) => {
       event.preventDefault();
       const password = document.getElementById("passwordInput").value;
-      const hashed = await sha256(password);
-      if (hashed !== config.dashboardPasswordHash) {
+      let hashed = "";
+      try {
+        hashed = await sha256(password);
+      } catch (error) {
+        document.getElementById("loginError").textContent = "登录组件加载失败，请刷新页面后重试。";
+        return;
+      }
+      if (!config.dashboardPasswordHash || hashed !== config.dashboardPasswordHash) {
         document.getElementById("loginError").textContent = "密码不正确。";
         return;
       }
