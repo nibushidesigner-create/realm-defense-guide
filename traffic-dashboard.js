@@ -296,6 +296,130 @@
     `;
   }
 
+  const timezoneLocations = {
+    UTC: { label: "UTC / Unknown", lat: 0, lon: 0 },
+    "Africa/Cairo": { label: "Egypt", lat: 26.8, lon: 30.8 },
+    "Africa/Johannesburg": { label: "South Africa", lat: -30.6, lon: 22.9 },
+    "Africa/Lagos": { label: "Nigeria", lat: 9.1, lon: 8.7 },
+    "Africa/Nairobi": { label: "Kenya", lat: 0.1, lon: 37.9 },
+    "America/Bogota": { label: "Colombia", lat: 4.6, lon: -74.1 },
+    "America/Chicago": { label: "Central US", lat: 41.9, lon: -87.6 },
+    "America/Denver": { label: "Mountain US", lat: 39.7, lon: -104.9 },
+    "America/Los_Angeles": { label: "West US", lat: 34.1, lon: -118.2 },
+    "America/Mexico_City": { label: "Mexico", lat: 19.4, lon: -99.1 },
+    "America/New_York": { label: "East US", lat: 40.7, lon: -74 },
+    "America/Phoenix": { label: "Southwest US", lat: 33.4, lon: -112.1 },
+    "America/Sao_Paulo": { label: "Brazil", lat: -23.5, lon: -46.6 },
+    "America/Toronto": { label: "Canada", lat: 43.7, lon: -79.4 },
+    "Asia/Bangkok": { label: "Thailand", lat: 13.8, lon: 100.5 },
+    "Asia/Dubai": { label: "UAE", lat: 25.2, lon: 55.3 },
+    "Asia/Ho_Chi_Minh": { label: "Vietnam", lat: 10.8, lon: 106.7 },
+    "Asia/Hong_Kong": { label: "Hong Kong", lat: 22.3, lon: 114.2 },
+    "Asia/Jakarta": { label: "Indonesia", lat: -6.2, lon: 106.8 },
+    "Asia/Kolkata": { label: "India", lat: 28.6, lon: 77.2 },
+    "Asia/Manila": { label: "Philippines", lat: 14.6, lon: 121 },
+    "Asia/Seoul": { label: "South Korea", lat: 37.6, lon: 127 },
+    "Asia/Shanghai": { label: "China", lat: 31.2, lon: 121.5 },
+    "Asia/Singapore": { label: "Singapore", lat: 1.3, lon: 103.8 },
+    "Asia/Taipei": { label: "Taiwan", lat: 25, lon: 121.6 },
+    "Asia/Tokyo": { label: "Japan", lat: 35.7, lon: 139.7 },
+    "Australia/Melbourne": { label: "Australia", lat: -37.8, lon: 145 },
+    "Australia/Sydney": { label: "Australia", lat: -33.9, lon: 151.2 },
+    "Europe/Amsterdam": { label: "Netherlands", lat: 52.4, lon: 4.9 },
+    "Europe/Berlin": { label: "Germany", lat: 52.5, lon: 13.4 },
+    "Europe/London": { label: "United Kingdom", lat: 51.5, lon: -0.1 },
+    "Europe/Madrid": { label: "Spain", lat: 40.4, lon: -3.7 },
+    "Europe/Moscow": { label: "Russia", lat: 55.8, lon: 37.6 },
+    "Europe/Paris": { label: "France", lat: 48.9, lon: 2.4 },
+    "Europe/Rome": { label: "Italy", lat: 41.9, lon: 12.5 },
+    "Europe/Warsaw": { label: "Poland", lat: 52.2, lon: 21 },
+    "Pacific/Auckland": { label: "New Zealand", lat: -36.8, lon: 174.8 },
+  };
+
+  function inferLocation(event) {
+    const timezone = event.timezone || "";
+    if (timezoneLocations[timezone]) return timezoneLocations[timezone];
+    if (timezone.startsWith("America/")) return { label: "Americas", lat: 25, lon: -80 };
+    if (timezone.startsWith("Europe/")) return { label: "Europe", lat: 50, lon: 10 };
+    if (timezone.startsWith("Asia/")) return { label: "Asia", lat: 30, lon: 105 };
+    if (timezone.startsWith("Africa/")) return { label: "Africa", lat: 2, lon: 20 };
+    if (timezone.startsWith("Australia/")) return { label: "Australia", lat: -25, lon: 133 };
+    if (timezone.startsWith("Pacific/")) return { label: "Pacific", lat: -18, lon: 170 };
+    if (/^zh/i.test(event.language || "")) return timezoneLocations["Asia/Shanghai"];
+    return timezoneLocations.UTC;
+  }
+
+  function geoDistribution(events) {
+    const pageViews = events.filter((event) => event.type === "page_view");
+    const buckets = pageViews.reduce((acc, event) => {
+      const location = inferLocation(event);
+      const key = `${location.label}|${location.lat}|${location.lon}`;
+      if (!acc[key]) acc[key] = { ...location, count: 0 };
+      acc[key].count += 1;
+      return acc;
+    }, {});
+    return Object.values(buckets).sort((a, b) => b.count - a.count);
+  }
+
+  function worldPointMap(items) {
+    const width = 900;
+    const height = 430;
+    const project = (lon, lat) => ({
+      x: ((lon + 180) / 360) * width,
+      y: ((90 - lat) / 180) * height,
+    });
+    const max = Math.max(...items.map((item) => item.count), 1);
+    const topItems = items.slice(0, 6);
+    const pointSvg = items
+      .map((item) => {
+        const point = project(item.lon, item.lat);
+        const radius = Math.min(22, 6 + Math.sqrt(item.count / max) * 14);
+        return `
+          <g>
+            <circle class="es-map-pulse" cx="${point.x}" cy="${point.y}" r="${radius + 8}" />
+            <circle class="es-map-point" cx="${point.x}" cy="${point.y}" r="${radius}" />
+            <title>${item.label}: ${item.count} page views</title>
+          </g>
+        `;
+      })
+      .join("");
+
+    return `
+      <div class="es-map-layout">
+        <div class="es-map-frame">
+          <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Global visitor distribution map">
+            <rect width="${width}" height="${height}" rx="8" class="es-map-ocean" />
+            ${[-120, -60, 0, 60, 120]
+              .map((lon) => `<line class="es-map-grid" x1="${project(lon, 0).x}" y1="24" x2="${project(lon, 0).x}" y2="${height - 24}" />`)
+              .join("")}
+            ${[-45, 0, 45]
+              .map((lat) => `<line class="es-map-grid" x1="24" y1="${project(0, lat).y}" x2="${width - 24}" y2="${project(0, lat).y}" />`)
+              .join("")}
+            <path class="es-map-land" d="M104 128c42-48 120-56 166-20 38 30 22 78-18 96-54 24-122 8-154-28-16-18-14-34 6-48Z" />
+            <path class="es-map-land" d="M214 238c42-10 90 14 102 52 16 50-22 92-66 90-36-2-60-36-58-76 2-30 10-54 22-66Z" />
+            <path class="es-map-land" d="M424 108c92-46 212-28 282 34 56 50 42 126-40 148-96 26-218-2-284-60-44-38-36-92 42-122Z" />
+            <path class="es-map-land" d="M452 248c46-18 104 0 132 42 30 46 8 98-42 114-46 14-92-20-104-70-8-34-2-70 14-86Z" />
+            <path class="es-map-land" d="M684 276c46-20 108-4 130 34 18 32 0 72-40 82-42 10-86-10-106-44-16-28-10-56 16-72Z" />
+            ${pointSvg || `<text x="${width / 2}" y="${height / 2}" text-anchor="middle" class="es-axis">No location data yet</text>`}
+          </svg>
+        </div>
+        <div class="es-map-list">
+          ${topItems
+            .map(
+              (item, index) => `
+                <div class="es-map-row">
+                  <span class="es-map-rank">${index + 1}</span>
+                  <span>${item.label}</span>
+                  <strong>${item.count}</strong>
+                </div>
+              `,
+            )
+            .join("") || `<div class="es-empty">暂无地区数据。</div>`}
+        </div>
+      </div>
+    `;
+  }
+
   function summarize(events) {
     const filtered = getFilteredEvents(events);
     const pageViews = filtered.filter((event) => event.type === "page_view");
@@ -311,6 +435,7 @@
     const days = getRangeDays(Number(document.getElementById("rangeFilter")?.value || "7"));
     const byDay = groupCount(pageViews, (event) => dayKey(new Date(event.timestamp)));
     const topReferrers = groupCount(pageViews, (event) => event.referrer || "direct");
+    const geoItems = geoDistribution(pageViews);
     return {
       filtered,
       pageViews,
@@ -321,6 +446,7 @@
       pages,
       languages,
       topReferrers,
+      geoItems,
       dayValues: days.map((day) => ({ label: day, value: byDay[day] || 0 })),
     };
   }
@@ -458,6 +584,11 @@
           <div class="es-legend">${languageItems.map((item) => `<span><i class="es-dot"></i>${item.label}: ${item.value}</span>`).join("") || "No language events yet"}</div>
         </article>
       </section>
+      <section class="es-card es-card-padding" style="margin-top:16px;">
+        <h2>Global visitor distribution</h2>
+        <p class="es-muted" style="margin:8px 0 0;">按浏览器时区估算地区分布，不采集精确 IP 地址。</p>
+        <div class="es-chart es-map-chart">${worldPointMap(summary.geoItems)}</div>
+      </section>
       <section class="es-grid es-charts" style="margin-top:16px;">
         <article class="es-card es-card-padding">
           <h2>Top pages</h2>
@@ -484,6 +615,7 @@
     const now = Date.now();
     const pages = ["/index.html", "/index.html#heroes", "/index.html#levels", "/blog/realm-defense-guide.html"];
     const types = ["page_view", "interaction", "section_view", "page_leave"];
+    const timezones = ["Asia/Shanghai", "America/New_York", "Europe/London", "Asia/Tokyo", "America/Los_Angeles", "Australia/Sydney"];
     const events = [];
     for (let i = 0; i < 90; i += 1) {
       const timestamp = new Date(now - Math.random() * 7 * 24 * 60 * 60 * 1000).toISOString();
@@ -500,6 +632,7 @@
         timestamp,
         referrer: Math.random() > 0.55 ? "direct" : "https://www.google.com/",
         language: Math.random() > 0.35 ? "en" : "zh",
+        timezone: timezones[Math.floor(Math.random() * timezones.length)],
         viewport: { width: 390 + Math.floor(Math.random() * 900), height: 844 },
         payload: {
           label: ["Heroes", "Stages", "Lineups", "Open the Guide"][Math.floor(Math.random() * 4)],

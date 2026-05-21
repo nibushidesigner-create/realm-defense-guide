@@ -229,6 +229,75 @@ select {
   height: auto;
 }
 
+.es-map-chart {
+  min-height: 0;
+}
+
+.es-map-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.es-map-frame {
+  min-width: 0;
+}
+
+.es-map-ocean {
+  fill: #f7fbff;
+}
+
+.es-map-grid {
+  stroke: rgba(22, 103, 255, 0.12);
+  stroke-width: 1;
+}
+
+.es-map-land {
+  fill: #dce8f8;
+  stroke: rgba(22, 103, 255, 0.18);
+  stroke-width: 1.5;
+}
+
+.es-map-pulse {
+  fill: rgba(22, 103, 255, 0.12);
+}
+
+.es-map-point {
+  fill: var(--es-brand-primary);
+  stroke: #ffffff;
+  stroke-width: 3;
+}
+
+.es-map-list {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.es-map-row {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--es-border-soft);
+  border-radius: var(--es-radius);
+  background: #ffffff;
+  font-size: 13px;
+}
+
+.es-map-rank {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(22, 103, 255, 0.1);
+  color: var(--es-brand-primary);
+  font-weight: 700;
+}
+
 .es-axis {
   color: var(--es-muted);
   fill: var(--es-muted);
@@ -339,6 +408,10 @@ select {
 
   .es-metrics,
   .es-charts {
+    grid-template-columns: 1fr;
+  }
+
+  .es-map-layout {
     grid-template-columns: 1fr;
   }
 }
