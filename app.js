@@ -848,6 +848,7 @@ const uiText = {
     guidePagesTitle: "Choose a guide section",
     guidePagesIntro: "Each topic has its own focused page for easier reading, sharing, and search indexing.",
     tournamentPrepTitle: "Weekly prep checklist",
+    tournamentMapsTitle: "Tournament map types",
     tournamentLineupsTitle: "Recommended lineup patterns",
     tournamentExecutionTitle: "Run rhythm",
     tournamentMistakesTitle: "Common mistakes",
@@ -857,6 +858,10 @@ const uiText = {
     tournamentCoreHeroes: "Core heroes",
     tournamentUseCase: "Use when",
     tournamentHowToPlay: "How to play",
+    tournamentMapReadLabel: "Read",
+    tournamentMapTowerLabel: "Tower plan",
+    tournamentMapHeroLabel: "Hero plan",
+    tournamentMapAvoidLabel: "Avoid",
     buildTabStarter: "Starter Push",
     buildTabControl: "Control & Safety",
     buildTabBoss: "Boss Handling",
@@ -936,6 +941,7 @@ const uiText = {
     guidePagesTitle: "选择攻略模块",
     guidePagesIntro: "每个主题都拆成独立页面，方便阅读、分享和搜索收录。",
     tournamentPrepTitle: "每周准备清单",
+    tournamentMapsTitle: "锦标赛地图类型",
     tournamentLineupsTitle: "推荐阵容模式",
     tournamentExecutionTitle: "实战节奏",
     tournamentMistakesTitle: "常见失误",
@@ -945,6 +951,10 @@ const uiText = {
     tournamentCoreHeroes: "核心英雄",
     tournamentUseCase: "适用情况",
     tournamentHowToPlay: "打法要点",
+    tournamentMapReadLabel: "读图",
+    tournamentMapTowerLabel: "塔位计划",
+    tournamentMapHeroLabel: "英雄处理",
+    tournamentMapAvoidLabel: "避坑",
     buildTabStarter: "新手推进",
     buildTabControl: "控场稳血",
     buildTabBoss: "Boss 处理",
@@ -1423,6 +1433,53 @@ const tournamentGuides = {
       "金币优先给主火力区，不要平均升塔。锦标赛后段敌人血量高，分散升级会很快失去击杀效率。",
       "技能不要见怪就放，等快怪、飞行混合、Boss 或精英单位进入塔区后再连控。",
     ],
+    maps: [
+      {
+        id: "single",
+        title: "单出口长线图",
+        pattern: "一条主路或多段绕行最终汇到同一出口，敌人会长时间经过同一批塔位。",
+        read: "优先找敌人重复经过的弯道或 S 型区域，这通常是全图最强火力区。",
+        towers: "少建塔，集中升 2-3 个覆盖时间最长的输出/减速塔，后段再补出口保险。",
+        heroes: "Connie、Efrigid、Yan、Helios 这类控场和塔辅最稳定；祝福输出英雄站在主火力区后侧。",
+        avoid: "不要把前排放入口硬扛，也不要在路头平均铺满低级塔。",
+      },
+      {
+        id: "split",
+        title: "双路汇合图",
+        pattern: "两条路线前半段分开，中后段汇合，压力点通常出现在汇合前后。",
+        read: "先确认哪一路快怪或飞行更多，再决定主英雄站哪边，副路用塔和召唤物拖住。",
+        towers: "汇合点是主火力区；单独路线只补足减速、防空或阻挡，不要抢主区金币。",
+        heroes: "Connie 兔子堵副路，Raida/Narlax/Efrigid 负责把汇合点的精英和快怪锁住。",
+        avoid: "不要三个英雄全追一边，另一边漏怪会让技能节奏崩掉。",
+      },
+      {
+        id: "multi",
+        title: "多出口分散图",
+        pattern: "敌人从多入口或多出口分散推进，单一火力区覆盖不完整。",
+        read: "先找最短路线和最容易漏的出口，把这条路线当作优先防守目标。",
+        towers: "每个出口都要有最低限度减速或阻挡，但最高等级塔只放在最危险路线。",
+        heroes: "移动型或控场英雄更重要；Raida、Masamune、Narlax、Connie 能补漏和拖时间。",
+        avoid: "不要追求每路都完美，锦标赛冲分更需要保住最危险出口。",
+      },
+      {
+        id: "air",
+        title: "飞行侧线图",
+        pattern: "地面路线看似稳定，但飞行怪从侧线或短线直接压出口。",
+        read: "开局就看飞行路线是否绕过主火力区，如果绕过，就要单独规划防空点。",
+        towers: "防空塔必须覆盖出口前和飞行转弯点；地面塔可以少一点，但不能完全没减速。",
+        heroes: "Fee、Smoulder、Cyra、Jett 或有防空能力的祝福英雄优先；Efrigid 留技能给飞行混合波。",
+        avoid: "不要等第一次飞行漏怪后才补防空，后段飞行血量会快速放大。",
+      },
+      {
+        id: "boss",
+        title: "Boss循环/停留图",
+        pattern: "Boss 会经过长弯道、循环路线或固定停留点，分数常被 Boss 波决定。",
+        read: "找 Boss 停留最久、被塔覆盖最多的位置，把这里当作爆发窗口。",
+        towers: "优先单体输出、减速和能重复打 Boss 的塔；小怪路线只补不漏即可。",
+        heroes: "Narlax 拉回、Raida 眩晕、Koi 变身、Yan/Helios 加速都围绕 Boss 进区后使用。",
+        avoid: "不要把大招交给 Boss 前的小怪波，真正决定分数的是 Boss 进入塔区后的 5-10 秒。",
+      },
+    ],
     lineups: [
       {
         title: "祝福英雄核心",
@@ -1477,6 +1534,53 @@ const tournamentGuides = {
       "Use the first attempt to record the failure point: leaking lane, flying wave, Boss movement, or late elite pressure.",
       "Spend gold on the main kill zone instead of upgrading every tower. Scattered upgrades lose damage fast in late waves.",
       "Do not cast skills on every small wave. Chain control when fast enemies, flying mixes, Bosses, or elites enter tower range.",
+    ],
+    maps: [
+      {
+        id: "single",
+        title: "Single-exit long lane",
+        pattern: "One main road, or several bends that eventually funnel into one exit. Enemies stay inside the same tower zone for a long time.",
+        read: "Find the bend or S-curve enemies pass through more than once. That is usually the best kill zone.",
+        towers: "Build fewer towers and push 2-3 high-value damage or slow towers that cover the longest route time. Add exit insurance later.",
+        heroes: "Connie, Efrigid, Yan, and Helios are reliable here. Put the blessed carry behind the main kill zone.",
+        avoid: "Do not tank at the entrance, and do not fill the whole lane with low-level towers.",
+      },
+      {
+        id: "split",
+        title: "Two-lane merge",
+        pattern: "Two lanes start apart and merge near the middle or late route. The merge point usually decides the run.",
+        read: "Check which lane has fast enemies or flying pressure, then put your main hero attention there while towers stall the other lane.",
+        towers: "The merge is the main kill zone. Side lanes only need enough slow, anti-air, or blocking to feed enemies into it.",
+        heroes: "Connie bunnies hold the side lane, while Raida, Narlax, or Efrigid locks elites and fast enemies at the merge.",
+        avoid: "Do not chase one lane with all three heroes. The other lane will leak and break your skill rhythm.",
+      },
+      {
+        id: "multi",
+        title: "Multi-exit spread",
+        pattern: "Enemies enter or exit through several separated routes, so one perfect kill zone cannot cover everything.",
+        read: "Identify the shortest route and the exit that leaks first. Defend that route as the priority.",
+        towers: "Every exit needs minimum slow or blocking, but only the most dangerous route deserves the highest upgrades.",
+        heroes: "Mobile and control heroes matter more. Raida, Masamune, Narlax, and Connie can patch leaks and buy time.",
+        avoid: "Do not try to make every lane perfect. Tournament scoring rewards protecting the most dangerous exit first.",
+      },
+      {
+        id: "air",
+        title: "Flying side lane",
+        pattern: "The ground lane looks stable, but flying enemies use a short side path toward the exit.",
+        read: "Check whether flying enemies bypass your main kill zone. If they do, plan a separate anti-air point immediately.",
+        towers: "Anti-air must cover the final approach and flying turns. Ground towers can be lighter, but still need slow support.",
+        heroes: "Fee, Smoulder, Cyra, Jett, or an anti-air blessed hero is preferred. Save Efrigid for flying mixed waves.",
+        avoid: "Do not wait until the first flying leak to build anti-air. Late flying health scales too fast.",
+      },
+      {
+        id: "boss",
+        title: "Boss loop or stop point",
+        pattern: "The Boss crosses a long bend, loop, or fixed stop point. The score is usually decided by the Boss wave.",
+        read: "Find where the Boss stays longest under the most towers. Treat that location as the burst window.",
+        towers: "Prioritize single-target damage, slows, and towers that can hit the Boss across multiple route segments.",
+        heroes: "Narlax pull, Raida stun, Koi transformation, and Yan/Helios haste should all wait until the Boss enters the zone.",
+        avoid: "Do not spend ultimates on the small wave before the Boss. The important window is the first 5-10 seconds inside the kill zone.",
+      },
     ],
     lineups: [
       {
@@ -1984,6 +2088,54 @@ function renderTournament() {
       <ul class="tournament-checklist">
         ${guide.prep.map((item) => `<li>${item}</li>`).join("")}
       </ul>
+    </section>
+
+    <section class="tournament-section reveal">
+      <div class="section-heading compact-heading">
+        <p class="eyebrow">${t("tournamentMapLabel")}</p>
+        <h2>${t("tournamentMapsTitle")}</h2>
+      </div>
+      <div class="tournament-maps">
+        ${guide.maps
+          .map(
+            (map) => `
+              <article class="tournament-map-card">
+                <div class="map-diagram map-diagram-${map.id}" aria-hidden="true">
+                  <span class="lane lane-a"></span>
+                  <span class="lane lane-b"></span>
+                  <span class="lane lane-c"></span>
+                  <span class="map-node start-a"></span>
+                  <span class="map-node start-b"></span>
+                  <span class="map-node tower-a"></span>
+                  <span class="map-node exit-a"></span>
+                </div>
+                <div>
+                  <h3>${map.title}</h3>
+                  <p>${map.pattern}</p>
+                </div>
+                <dl class="map-type-notes">
+                  <div>
+                    <dt>${t("tournamentMapReadLabel")}</dt>
+                    <dd>${map.read}</dd>
+                  </div>
+                  <div>
+                    <dt>${t("tournamentMapTowerLabel")}</dt>
+                    <dd>${map.towers}</dd>
+                  </div>
+                  <div>
+                    <dt>${t("tournamentMapHeroLabel")}</dt>
+                    <dd>${map.heroes}</dd>
+                  </div>
+                  <div>
+                    <dt>${t("tournamentMapAvoidLabel")}</dt>
+                    <dd>${map.avoid}</dd>
+                  </div>
+                </dl>
+              </article>
+            `,
+          )
+          .join("")}
+      </div>
     </section>
 
     <section class="tournament-section reveal">

@@ -1148,6 +1148,241 @@ select:focus {
   gap: 16px;
 }
 
+.tournament-maps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.tournament-map-card {
+  display: grid;
+  gap: 16px;
+  min-height: 520px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(224, 183, 79, 0.09), transparent 48%),
+    rgba(244, 239, 226, 0.045);
+}
+
+.tournament-map-card h3 {
+  font-size: 22px;
+}
+
+.tournament-map-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.68;
+}
+
+.map-diagram {
+  position: relative;
+  min-height: 118px;
+  overflow: hidden;
+  border: 1px solid rgba(244, 239, 226, 0.12);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(88, 179, 154, 0.18), transparent 18%),
+    radial-gradient(circle at 78% 74%, rgba(224, 183, 79, 0.16), transparent 20%),
+    rgba(8, 17, 14, 0.46);
+}
+
+.lane,
+.map-node {
+  position: absolute;
+  display: block;
+}
+
+.lane {
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(224, 183, 79, 0.9), rgba(88, 179, 154, 0.82));
+  box-shadow: 0 0 18px rgba(224, 183, 79, 0.2);
+}
+
+.map-node {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(244, 239, 226, 0.8);
+  border-radius: 999px;
+  background: var(--surface-2);
+}
+
+.tower-a {
+  width: 22px;
+  height: 22px;
+  border-color: rgba(224, 183, 79, 0.95);
+  background: rgba(224, 183, 79, 0.34);
+}
+
+.exit-a {
+  border-color: rgba(215, 104, 79, 0.95);
+  background: rgba(215, 104, 79, 0.34);
+}
+
+.map-diagram-single .lane-a {
+  left: 12%;
+  right: 10%;
+  top: 58%;
+  transform: rotate(-8deg);
+}
+
+.map-diagram-single .lane-b {
+  left: 28%;
+  right: 34%;
+  top: 36%;
+  transform: rotate(18deg);
+}
+
+.map-diagram-split .lane-a {
+  left: 8%;
+  width: 48%;
+  top: 28%;
+  transform: rotate(14deg);
+}
+
+.map-diagram-split .lane-b {
+  left: 8%;
+  width: 48%;
+  top: 76%;
+  transform: rotate(-18deg);
+}
+
+.map-diagram-split .lane-c {
+  left: 46%;
+  width: 42%;
+  top: 52%;
+  transform: rotate(2deg);
+}
+
+.map-diagram-multi .lane-a {
+  left: 10%;
+  right: 12%;
+  top: 24%;
+}
+
+.map-diagram-multi .lane-b {
+  left: 10%;
+  right: 12%;
+  top: 52%;
+}
+
+.map-diagram-multi .lane-c {
+  left: 10%;
+  right: 12%;
+  top: 80%;
+}
+
+.map-diagram-air .lane-a {
+  left: 10%;
+  right: 10%;
+  top: 66%;
+  transform: rotate(-4deg);
+}
+
+.map-diagram-air .lane-b {
+  left: 42%;
+  right: 12%;
+  top: 28%;
+  height: 5px;
+  border: 1px dashed rgba(88, 179, 154, 0.9);
+  background: transparent;
+}
+
+.map-diagram-boss .lane-a {
+  left: 15%;
+  right: 15%;
+  top: 50%;
+}
+
+.map-diagram-boss .lane-b {
+  left: 28%;
+  width: 45%;
+  top: 30%;
+  transform: rotate(34deg);
+}
+
+.map-diagram-boss .lane-c {
+  left: 28%;
+  width: 45%;
+  top: 70%;
+  transform: rotate(-34deg);
+}
+
+.map-diagram .start-a {
+  left: 10%;
+  top: 56%;
+}
+
+.map-diagram .start-b {
+  left: 10%;
+  top: 24%;
+}
+
+.map-diagram .tower-a {
+  left: 48%;
+  top: 45%;
+}
+
+.map-diagram .exit-a {
+  right: 9%;
+  top: 56%;
+}
+
+.map-diagram-multi .start-a {
+  top: 18%;
+}
+
+.map-diagram-multi .start-b {
+  top: 74%;
+}
+
+.map-diagram-multi .exit-a {
+  top: 46%;
+}
+
+.map-diagram-air .start-b {
+  left: 40%;
+  top: 22%;
+}
+
+.map-diagram-air .exit-a {
+  top: 26%;
+}
+
+.map-diagram-boss .tower-a {
+  left: 45%;
+  top: 43%;
+  width: 28px;
+  height: 28px;
+}
+
+.map-type-notes {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.map-type-notes div {
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.map-type-notes dt {
+  margin-bottom: 5px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.map-type-notes dd {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.62;
+}
+
 .tournament-lineup {
   display: grid;
   gap: 18px;
@@ -1497,8 +1732,9 @@ footer strong {
   .lineup-lists,
   .tournament-summary,
   .tournament-rhythm,
+  .tournament-maps,
   .tournament-lineups {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .tournament-heroes {
@@ -1594,6 +1830,17 @@ footer strong {
 }
 
 @media (max-width: 680px) {
+  .tournament-summary,
+  .tournament-rhythm,
+  .tournament-maps,
+  .tournament-lineups {
+    grid-template-columns: 1fr;
+  }
+
+  .tournament-map-card {
+    min-height: 0;
+  }
+
   .hero-shell {
     min-height: auto;
     gap: 24px;
