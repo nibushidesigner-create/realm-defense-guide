@@ -812,6 +812,7 @@ const uiText = {
     navLevels: "Stages",
     navTowers: "Towers",
     navBuilds: "Lineups",
+    navTournament: "Tourneys",
     heroEyebrow: "Hero growth · Stage tactics · Tower rhythm",
     heroTitle: "Realm Defense Guide Database",
     heroIntro: "Covers 24 heroes, 7 worlds, and 240 campaign stages, with practical positioning, tower upgrades, and skill timing.",
@@ -840,6 +841,22 @@ const uiText = {
     towersIntro: "Each world has different tower mechanics. First define the main kill zone, then spend gold where enemies stay in range longer.",
     buildsTitle: "Lineup Planning",
     buildsIntro: "Different maps ask different questions: flying enemies, bulky waves, split lanes, and Boss burst each need different hero combinations.",
+    tournamentTitle: "Tournament Guide",
+    tournamentIntro: "Plan around the blessed hero, the weekly map, and clean wave timing instead of forcing the same campaign team every run.",
+    tournamentEyebrow: "Weekly Competition",
+    guidePagesEyebrow: "Guide Pages",
+    guidePagesTitle: "Choose a guide section",
+    guidePagesIntro: "Each topic has its own focused page for easier reading, sharing, and search indexing.",
+    tournamentPrepTitle: "Weekly prep checklist",
+    tournamentLineupsTitle: "Recommended lineup patterns",
+    tournamentExecutionTitle: "Run rhythm",
+    tournamentMistakesTitle: "Common mistakes",
+    tournamentBlessedLabel: "Blessed hero",
+    tournamentMapLabel: "Map read",
+    tournamentScoreLabel: "Score push",
+    tournamentCoreHeroes: "Core heroes",
+    tournamentUseCase: "Use when",
+    tournamentHowToPlay: "How to play",
     buildTabStarter: "Starter Push",
     buildTabControl: "Control & Safety",
     buildTabBoss: "Boss Handling",
@@ -883,6 +900,7 @@ const uiText = {
     navLevels: "关卡",
     navTowers: "防御塔",
     navBuilds: "阵容",
+    navTournament: "锦标赛",
     heroEyebrow: "英雄养成 · 关卡打法 · 塔位节奏",
     heroTitle: "Realm Defense 攻略资料库",
     heroIntro: "覆盖 24 位英雄、7 个世界和 240 个战役关卡，快速找到可执行的站位、升塔和技能释放节奏。",
@@ -911,6 +929,22 @@ const uiText = {
     towersIntro: "每个世界的塔机制都不同，核心思路是先确定主火力区，再把金币集中到能延长敌人停留时间的位置。",
     buildsTitle: "阵容搭配思路",
     buildsIntro: "不同地图换的是“问题答案”：飞行怪、厚血怪、分路压力和Boss爆发分别需要不同英雄组合。",
+    tournamentTitle: "锦标赛攻略",
+    tournamentIntro: "锦标赛不要固定套主线阵容，要围绕本周祝福英雄、地图路线和技能节奏来追求更高波次。",
+    tournamentEyebrow: "每周竞赛",
+    guidePagesEyebrow: "攻略页面",
+    guidePagesTitle: "选择攻略模块",
+    guidePagesIntro: "每个主题都拆成独立页面，方便阅读、分享和搜索收录。",
+    tournamentPrepTitle: "每周准备清单",
+    tournamentLineupsTitle: "推荐阵容模式",
+    tournamentExecutionTitle: "实战节奏",
+    tournamentMistakesTitle: "常见失误",
+    tournamentBlessedLabel: "祝福英雄",
+    tournamentMapLabel: "地图判断",
+    tournamentScoreLabel: "冲分思路",
+    tournamentCoreHeroes: "核心英雄",
+    tournamentUseCase: "适用情况",
+    tournamentHowToPlay: "打法要点",
     buildTabStarter: "新手推进",
     buildTabControl: "控场稳血",
     buildTabBoss: "Boss 处理",
@@ -1376,6 +1410,119 @@ const buildEnglish = {
   },
 };
 
+const tournamentGuides = {
+  zh: {
+    summary: [
+      { labelKey: "tournamentBlessedLabel", value: "优先看本周祝福英雄；低觉醒祝福英雄只当辅助，不要硬当主C。" },
+      { labelKey: "tournamentMapLabel", value: "开局先读路线：出口数量、飞行线、Boss停留点和可重复经过的弯道。" },
+      { labelKey: "tournamentScoreLabel", value: "目标不是三星通关，而是稳定拖到更高波次并减少英雄死亡与漏怪。" },
+    ],
+    prep: [
+      "本周祝福英雄如果练度高，就围绕他配控场和塔辅；练度低则用 Connie、Efrigid、Yan、Helios 这类稳定组件兜底。",
+      "先试一局记录死亡点：是哪一路漏怪、哪一波飞行压不住、Boss 是否离开主火力区。",
+      "金币优先给主火力区，不要平均升塔。锦标赛后段敌人血量高，分散升级会很快失去击杀效率。",
+      "技能不要见怪就放，等快怪、飞行混合、Boss 或精英单位进入塔区后再连控。",
+    ],
+    lineups: [
+      {
+        title: "祝福英雄核心",
+        heroes: ["yan", "connie", "helios"],
+        use: "祝福英雄练度足够，或本周地图需要把某个输出/塔位持续加速。",
+        focus: "Yan 提速关键单位，Helios 强化塔或主输出，Connie 用召唤物拖住后段高压。",
+        steps: ["祝福英雄负责主要输出或控场，另外两个位置补生存和节奏。", "把加速和强化集中给能改变波次的单位，不要浪费在短命召唤物上。", "后段用 Connie 兔子吃远程、冲锋或Boss技能。"],
+      },
+      {
+        title: "控场保命核心",
+        heroes: ["connie", "efrigid", "mabyn"],
+        use: "地图多路、快怪多、敌人容易冲出塔区，或祝福英雄练度不足。",
+        focus: "用兔子墙、冰冻和恐惧把敌人反复留在主火力区，牺牲爆发换稳定波次。",
+        steps: ["入口不要过早放兔子，等敌人汇合后再堵。", "Efrigid 冰冻留给快怪、飞行混合或高血量精英。", "Mabyn 恐惧接在冰冻或聚怪后，能把敌人重新推回塔区。"],
+      },
+      {
+        title: "Boss与精英处理",
+        heroes: ["raida", "koizuul", "narlax"],
+        use: "Boss或高血量精英决定分数，本周地图有明显的停留点或回拉空间。",
+        focus: "Narlax 把目标拉回火力区，Raida 眩晕补爆发，Koi 负责变身期击杀窗口。",
+        steps: ["不要把爆发交给小怪波，等Boss进入最强塔位后再连招。", "Narlax 拉回后立刻接眩晕、冰冻或Koi变身输出。", "如果Boss路径长，优先升级能覆盖多段路线的单体/减速塔。"],
+      },
+      {
+        title: "后期塔辅冲分",
+        heroes: ["helios", "leif", "shamiko"],
+        use: "地图塔伤占比高，或敌人血量已超过英雄普攻处理能力。",
+        focus: "让英雄服务塔位：强化、加速、保前排、补控，靠主火力区持续击杀。",
+        steps: ["先确定敌人停留最久的弯道，把高等级塔集中在这里。", "Helios/Leif 的强化给主输出塔，不要频繁切目标。", "Shamiko 适合手动操作熟练后上场，能把控制上限拉高。"],
+      },
+    ],
+    rhythm: [
+      ["开局", "快速确认主路和飞行线，少建塔，多留金币给第一个核心塔升级。"],
+      ["中段", "开始用英雄技能覆盖高压波，塔位补减速、眩晕或防空短板。"],
+      ["后段", "不要追着敌人乱拖英雄，守住主火力区，技能只给决定分数的波次。"],
+      ["复盘", "看失败波次：如果死于飞行，补防空；死于Boss，补单体和回拉；死于快怪，补控场。"],
+    ],
+    mistakes: [
+      "只看英雄强度，不看本周祝福。锦标赛里祝福英雄经常比常规T0更关键。",
+      "平均升级所有塔，导致后段没有任何一个火力区能击杀高血量敌人。",
+      "技能交得太早，真正的快怪、飞行混合或Boss进场时没有控制。",
+      "把前排放在入口硬扛，敌人还没进入塔区就消耗了英雄血量和召唤物。",
+    ],
+  },
+  en: {
+    summary: [
+      { labelKey: "tournamentBlessedLabel", value: "Check the weekly blessed hero first; if their rank is low, use them as support instead of forcing them as the carry." },
+      { labelKey: "tournamentMapLabel", value: "Read exits, flying lanes, Boss stop points, and bends that enemies pass more than once." },
+      { labelKey: "tournamentScoreLabel", value: "The goal is not three stars. Push stable waves, avoid hero deaths, and protect the final exit." },
+    ],
+    prep: [
+      "If the blessed hero is well ranked, build around them with control and tower support. If not, stabilize with Connie, Efrigid, Yan, or Helios.",
+      "Use the first attempt to record the failure point: leaking lane, flying wave, Boss movement, or late elite pressure.",
+      "Spend gold on the main kill zone instead of upgrading every tower. Scattered upgrades lose damage fast in late waves.",
+      "Do not cast skills on every small wave. Chain control when fast enemies, flying mixes, Bosses, or elites enter tower range.",
+    ],
+    lineups: [
+      {
+        title: "Blessed Hero Core",
+        heroes: ["yan", "connie", "helios"],
+        use: "The blessed hero is ranked enough, or the map rewards constant haste on one hero or tower.",
+        focus: "Yan speeds the key unit, Helios empowers the carry tower or hero, and Connie stalls late pressure.",
+        steps: ["Let the blessed hero handle the main damage or control role while the other slots cover safety.", "Put haste and empowerment on the unit that changes the wave, not on short-lived summons.", "Use Connie bunnies to absorb ranged hits, charges, or Boss skills in late waves."],
+      },
+      {
+        title: "Control Safety Core",
+        heroes: ["connie", "efrigid", "mabyn"],
+        use: "Split lanes, fast enemies, frequent leaks, or a weak blessed hero.",
+        focus: "Bunnies, freeze, and fear keep enemies inside the kill zone. It trades burst for reliable wave depth.",
+        steps: ["Do not block at the entrance too early; wait until enemies overlap.", "Save Efrigid for fast enemies, flying mixes, or bulky elites.", "Mabyn fear is strongest after freeze or pull control pushes enemies back into tower range."],
+      },
+      {
+        title: "Boss and Elite Control",
+        heroes: ["raida", "koizuul", "narlax"],
+        use: "Bosses or bulky elites decide the score and the map gives you a clear stop or pull-back point.",
+        focus: "Narlax returns targets to the kill zone, Raida adds stun and burst, and Koi converts the damage window.",
+        steps: ["Do not spend burst on small waves; wait for the Boss to enter your best tower zone.", "After a Narlax pull, immediately chain stun, freeze, or Koi transformation damage.", "On long Boss paths, upgrade single-target and slow towers that cover multiple route segments."],
+      },
+      {
+        title: "Late Tower-Support Push",
+        heroes: ["helios", "leif", "shamiko"],
+        use: "Tower damage matters more than hero basic attacks, especially in late high-health waves.",
+        focus: "Heroes serve the tower plan: empower, haste, frontline, and control while the kill zone does the work.",
+        steps: ["Find the bend where enemies stay longest and stack high-level towers there.", "Keep Helios or Leif buffs on the main damage tower instead of constantly switching targets.", "Shamiko rewards manual control and raises the ceiling once the base plan is stable."],
+      },
+    ],
+    rhythm: [
+      ["Opening", "Identify the main lane and flying route quickly. Build fewer towers and save gold for the first core upgrade."],
+      ["Mid run", "Start spending hero skills on pressure waves while towers cover slow, stun, or anti-air gaps."],
+      ["Late run", "Do not chase leaks across the map. Hold the main kill zone and cast only on score-deciding waves."],
+      ["Review", "If flying ended the run, add anti-air. If Boss ended it, add single-target and pull. If fast enemies ended it, add control."],
+    ],
+    mistakes: [
+      "Ignoring the blessed hero. In tournament weeks, the blessing can matter more than the usual campaign tier list.",
+      "Upgrading every tower evenly, leaving no kill zone strong enough for late high-health enemies.",
+      "Casting too early, then having no freeze, fear, or stun when the dangerous wave arrives.",
+      "Parking frontline heroes at the entrance before enemies enter tower range.",
+    ],
+  },
+};
+
 const state = {
   lang: "en",
   activeHero: heroes[0].id,
@@ -1411,6 +1558,7 @@ const threatFilter = document.querySelector("#threatFilter");
 const levelSearch = document.querySelector("#levelSearch");
 const buildDetail = document.querySelector("#buildDetail");
 const worldGuide = document.querySelector("#worldGuide");
+const tournamentGuideEl = document.querySelector("#tournamentGuide");
 
 function t(key) {
   return uiText[state.lang][key];
@@ -1442,6 +1590,10 @@ function localWorld(world) {
 
 function localBuild(id) {
   return isEnglish() ? buildEnglish[id] : builds[id];
+}
+
+function localTournament() {
+  return tournamentGuides[state.lang];
 }
 
 function worldById(id) {
@@ -1564,6 +1716,7 @@ function setLanguage(lang) {
   renderLevels();
   renderWorldGuide();
   renderBuild();
+  renderTournament();
 }
 
 function renderHeroList() {
@@ -1794,6 +1947,103 @@ function renderBuild() {
   `;
 }
 
+function renderTournament() {
+  if (!tournamentGuideEl) return;
+  const guide = localTournament();
+  tournamentGuideEl.innerHTML = `
+    <section class="tournament-summary reveal">
+      ${guide.summary
+        .map(
+          (item) => `
+            <article>
+              <span>${t(item.labelKey)}</span>
+              <strong>${item.value}</strong>
+            </article>
+          `,
+        )
+        .join("")}
+    </section>
+
+    <section class="tournament-section reveal">
+      <div class="section-heading compact-heading">
+        <p class="eyebrow">${t("tournamentPrepTitle")}</p>
+        <h2>${t("tournamentExecutionTitle")}</h2>
+      </div>
+      <div class="tournament-rhythm">
+        ${guide.rhythm
+          .map(
+            ([label, value]) => `
+              <div>
+                <strong>${label}</strong>
+                <span>${value}</span>
+              </div>
+            `,
+          )
+          .join("")}
+      </div>
+      <ul class="tournament-checklist">
+        ${guide.prep.map((item) => `<li>${item}</li>`).join("")}
+      </ul>
+    </section>
+
+    <section class="tournament-section reveal">
+      <div class="section-heading compact-heading">
+        <p class="eyebrow">${t("tournamentCoreHeroes")}</p>
+        <h2>${t("tournamentLineupsTitle")}</h2>
+      </div>
+      <div class="tournament-lineups">
+        ${guide.lineups
+          .map((lineup) => {
+            const lineupHeroes = lineup.heroes.map((id) => heroById(id)).filter(Boolean);
+            return `
+              <article class="tournament-lineup">
+                <div>
+                  <h3>${lineup.title}</h3>
+                  <p>${lineup.focus}</p>
+                </div>
+                <div class="tournament-heroes" aria-label="${t("tournamentCoreHeroes")}">
+                  ${lineupHeroes
+                    .map((hero) => {
+                      const displayHero = localHero(hero);
+                      return `
+                        <span>
+                          <img src="${heroIconPath(hero)}" alt="${hero.name} ${t("icon")}" loading="lazy" />
+                          <b>${hero.name}</b>
+                          <small>${displayHero.role}</small>
+                        </span>
+                      `;
+                    })
+                    .join("")}
+                </div>
+                <div class="tournament-use">
+                  <strong>${t("tournamentUseCase")}</strong>
+                  <p>${lineup.use}</p>
+                </div>
+                <div class="tournament-use">
+                  <strong>${t("tournamentHowToPlay")}</strong>
+                  <ul>
+                    ${lineup.steps.map((step) => `<li>${step}</li>`).join("")}
+                  </ul>
+                </div>
+              </article>
+            `;
+          })
+          .join("")}
+      </div>
+    </section>
+
+    <section class="tournament-section reveal">
+      <div class="section-heading compact-heading">
+        <p class="eyebrow">${t("tournamentMistakesTitle")}</p>
+        <h2>${t("tournamentScoreLabel")}</h2>
+      </div>
+      <ul class="tournament-mistakes">
+        ${guide.mistakes.map((item) => `<li>${item}</li>`).join("")}
+      </ul>
+    </section>
+  `;
+}
+
 function bindEvents() {
   if (heroList) {
     heroList.addEventListener("click", (event) => {
@@ -1881,4 +2131,5 @@ renderHeroList();
 renderLevels();
 renderWorldGuide();
 renderBuild();
+renderTournament();
 revealOnScroll();

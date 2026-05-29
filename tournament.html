@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google-adsense-account" content="ca-pub-8617360599768528" />
-    <title>World & Tower Overview · Realm Defense Guide</title>
+    <title>Tournament Guide · Realm Defense Guide</title>
     <meta
       name="description"
-      content="Realm Defense tower guide with world-by-world tower rhythm, enemy pressure notes, and practical upgrade planning."
+      content="Realm Defense tournament guide with blessed hero planning, weekly map reading, score-push rhythm, recommended teams, and hero portraits."
     />
-    <link rel="canonical" href="https://realmtdguide.com/towers.html" />
+    <link rel="canonical" href="https://realmtdguide.com/tournament.html" />
     <script
       async
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8617360599768528"
@@ -23,7 +23,7 @@
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body data-page-title="towersTitle">
+  <body data-page-title="tournamentTitle">
     <header class="topbar">
       <a class="brand" href="./index.html" aria-label="Realm Defense guide home" data-i18n-aria="brandAria">
         <span class="brand-mark">RD</span>
@@ -35,9 +35,9 @@
       <nav class="nav" aria-label="Primary navigation" data-i18n-aria="navAria">
         <a href="./heroes.html" data-i18n="navHeroes">Heroes</a>
         <a href="./stages.html" data-i18n="navLevels">Stages</a>
-        <a class="active" href="./towers.html" data-i18n="navTowers">Towers</a>
+        <a href="./towers.html" data-i18n="navTowers">Towers</a>
         <a href="./lineups.html" data-i18n="navBuilds">Lineups</a>
-        <a href="./tournament.html" data-i18n="navTournament">Tournament</a>
+        <a class="active" href="./tournament.html" data-i18n="navTournament">Tournament</a>
       </nav>
       <div class="language-switch" aria-label="Language switcher" data-i18n-aria="languageAria">
         <button class="language-option active" type="button" data-lang="en">EN</button>
@@ -46,16 +46,13 @@
     </header>
 
     <main>
-      <section class="split-section page-panel" id="towers">
+      <section class="section-panel page-panel tournament-page" id="tournament">
         <div class="section-heading reveal">
-          <p class="eyebrow">Tower Rhythm</p>
-          <h1 data-i18n="towersTitle">World & Tower Overview</h1>
-          <p data-i18n="towersIntro">Each world has different tower mechanics. First define the main kill zone, then spend gold where enemies stay in range longer.</p>
+          <p class="eyebrow" data-i18n="tournamentEyebrow">Weekly Competition</p>
+          <h1 data-i18n="tournamentTitle">Tournament Guide</h1>
+          <p data-i18n="tournamentIntro">Plan around the blessed hero, the weekly map, and clean wave timing instead of forcing the same campaign team every run.</p>
         </div>
-        <div class="tower-guide-panel reveal">
-          <div class="world-tabs compact-world-tabs" id="towerWorldTabs" aria-label="Tower overview world tabs" data-i18n-aria="towerWorldTabsAria"></div>
-          <div class="world-guide" id="worldGuide"></div>
-        </div>
+        <div id="tournamentGuide"></div>
       </section>
     </main>
 

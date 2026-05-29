@@ -666,7 +666,7 @@
 
   function seedData() {
     const now = Date.now();
-    const pages = ["/index.html", "/heroes.html", "/stages.html", "/towers.html", "/lineups.html", "/blog/realm-defense-guide.html"];
+    const pages = ["/index.html", "/heroes.html", "/stages.html", "/towers.html", "/lineups.html", "/tournament.html", "/blog/realm-defense-guide.html"];
     const types = ["page_view", "interaction", "section_view", "page_leave"];
     const timezones = ["Asia/Shanghai", "America/New_York", "Europe/London", "Asia/Tokyo", "America/Los_Angeles", "Australia/Sydney"];
     const events = [];
@@ -689,7 +689,7 @@
         viewport: { width: 390 + Math.floor(Math.random() * 900), height: 844 },
         payload: {
           label: ["Heroes", "Stages", "Lineups", "Open the Guide"][Math.floor(Math.random() * 4)],
-          section: ["heroes", "stages", "towers", "lineups"][Math.floor(Math.random() * 4)],
+          section: ["heroes", "stages", "towers", "lineups", "tournament"][Math.floor(Math.random() * 5)],
           durationSeconds: 12 + Math.floor(Math.random() * 160),
           percent: 20 + Math.floor(Math.random() * 80),
         },
