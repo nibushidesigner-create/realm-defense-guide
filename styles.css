@@ -115,10 +115,12 @@ select {
 }
 
 .nav {
+  flex: 1 1 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 8px;
+  min-width: 0;
 }
 
 .nav a {
@@ -126,6 +128,7 @@ select {
   padding: 9px 13px;
   border-radius: 8px;
   color: var(--muted);
+  white-space: nowrap;
   transition: background 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
@@ -1503,7 +1506,7 @@ footer strong {
   }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 860px) {
   .topbar {
     position: sticky;
     display: grid;
@@ -1559,27 +1562,23 @@ footer strong {
   .nav {
     grid-column: 1 / -1;
     grid-row: 2;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     width: calc(100vw - 24px);
     max-width: calc(100vw - 24px);
     min-width: 0;
     gap: 6px;
-    overflow-x: auto;
-    padding-bottom: 2px;
-    scrollbar-width: none;
-  }
-
-  .nav::-webkit-scrollbar {
-    display: none;
+    overflow: visible;
+    padding-bottom: 0;
   }
 
   .nav a {
-    flex: 0 0 calc((100vw - 48px) / 5);
+    min-width: 0;
     min-height: 30px;
-    padding: 6px 4px;
+    padding: 6px 2px;
     border: 1px solid rgba(244, 239, 226, 0.1);
     background: rgba(244, 239, 226, 0.04);
-    font-size: 12px;
+    font-size: 11px;
     line-height: 1;
     overflow: hidden;
     text-align: center;
@@ -1592,7 +1591,9 @@ footer strong {
     background: rgba(224, 183, 79, 0.14);
     color: var(--accent);
   }
+}
 
+@media (max-width: 680px) {
   .hero-shell {
     min-height: auto;
     gap: 24px;
