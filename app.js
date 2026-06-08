@@ -813,6 +813,7 @@ const uiText = {
     navTowers: "Towers",
     navBuilds: "Lineups",
     navTournament: "Tourneys",
+    navBlog: "Blog",
     heroEyebrow: "Hero growth · Stage tactics · Tower rhythm",
     heroTitle: "Realm Defense Guide Database",
     heroIntro: "Covers 24 heroes, 7 worlds, and 240 campaign stages, with practical positioning, tower upgrades, and skill timing.",
@@ -906,6 +907,7 @@ const uiText = {
     navTowers: "防御塔",
     navBuilds: "阵容",
     navTournament: "锦标赛",
+    navBlog: "博客",
     heroEyebrow: "英雄养成 · 关卡打法 · 塔位节奏",
     heroTitle: "Realm Defense 攻略资料库",
     heroIntro: "覆盖 24 位英雄、7 个世界和 240 个战役关卡，快速找到可执行的站位、升塔和技能释放节奏。",
@@ -1964,6 +1966,14 @@ function renderWorldGuide() {
   if (!worldGuide) return;
   const world = worldGuides.find((item) => item.world === state.activeTowerWorld) || worldGuides[0];
   const displayWorld = localWorld(world);
+  const displayThreats = world.threats.map((threat) => translateThreat(threat));
+  const specialEntries = Object.keys(world.specials)
+    .map((level) => {
+      const special = isEnglish() ? specialLevelEnglish[level] : world.specials[level];
+      return { level, ...special };
+    })
+    .filter((special) => special.name)
+    .slice(0, 4);
   worldGuide.innerHTML = `
         <article class="world-card">
           <header>
@@ -1974,12 +1984,58 @@ function renderWorldGuide() {
             <span class="tag">${world.start}-${world.end}</span>
           </header>
           <p>${displayWorld.plan.core}</p>
+          <div class="tag-row">
+            ${displayThreats.map((threat) => `<span class="tag">${threat}</span>`).join("")}
+          </div>
           <ul class="mini-list">
             ${displayWorld.towers.map((tower) => `<li>${tower}</li>`).join("")}
           </ul>
           <div class="tag-row">
             ${displayWorld.unlocks.map((unlock) => `<span class="tag">${unlock}</span>`).join("")}
           </div>
+          <section class="tower-depth">
+            <div class="tower-depth-grid">
+              <div class="tower-depth-card">
+                <h3>${isEnglish() ? "Opening build" : "开局建塔"}</h3>
+                <p>${displayWorld.plan.opening}</p>
+              </div>
+              <div class="tower-depth-card">
+                <h3>${isEnglish() ? "Core rhythm" : "核心节奏"}</h3>
+                <p>${displayWorld.plan.core}</p>
+              </div>
+              <div class="tower-depth-card">
+                <h3>${isEnglish() ? "Late-wave spending" : "后期补强"}</h3>
+                <p>${displayWorld.plan.late}</p>
+              </div>
+            </div>
+            <div class="tower-depth-card">
+              <h3>${isEnglish() ? "Threat answers" : "威胁处理"}</h3>
+              <ul>
+                ${world.threats
+                  .map((threat) => {
+                    const label = translateThreat(threat);
+                    const advice = isEnglish() ? threatAdviceEnglish[threat] || displayWorld.plan.core : threatAdvice[threat] || displayWorld.plan.core;
+                    return `<li><strong>${label}</strong>: ${advice}</li>`;
+                  })
+                  .join("")}
+              </ul>
+            </div>
+            <div class="tower-special-grid">
+              ${specialEntries
+                .map(
+                  (special) => `
+                    <article class="tower-special-card">
+                      <h3>${special.name}</h3>
+                      <p>${special.core}</p>
+                      <ul>
+                        ${special.steps.slice(0, 2).map((step) => `<li>${step}</li>`).join("")}
+                      </ul>
+                    </article>
+                  `,
+                )
+                .join("")}
+            </div>
+          </section>
         </article>
       `;
 }
