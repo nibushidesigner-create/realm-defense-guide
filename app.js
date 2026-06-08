@@ -1649,6 +1649,19 @@ function levelMapPath(level) {
   return `./assets/maps/${level}.svg`;
 }
 
+function towerPreviewLevel(world) {
+  const previewByWorld = {
+    w1: 1,
+    w2: 30,
+    w3: 60,
+    w4: 90,
+    w5: 130,
+    w6: 170,
+    w7: 210,
+  };
+  return previewByWorld[world.id] || world.start;
+}
+
 function heroById(id) {
   return heroes.find((hero) => hero.id === id);
 }
@@ -1967,6 +1980,7 @@ function renderWorldGuide() {
   const world = worldGuides.find((item) => item.world === state.activeTowerWorld) || worldGuides[0];
   const displayWorld = localWorld(world);
   const displayThreats = world.threats.map((threat) => translateThreat(threat));
+  const previewLevel = towerPreviewLevel(world);
   const specialEntries = Object.keys(world.specials)
     .map((level) => {
       const special = isEnglish() ? specialLevelEnglish[level] : world.specials[level];
@@ -1983,6 +1997,10 @@ function renderWorldGuide() {
             </div>
             <span class="tag">${world.start}-${world.end}</span>
           </header>
+          <figure class="tower-world-map">
+            <img src="${levelMapPath(previewLevel)}" alt="${displayWorld.world} tower route example map" loading="lazy" />
+            <figcaption>${isEnglish() ? "Representative route map" : "代表路线地图"} · ${isEnglish() ? "Stage" : "关卡"} ${previewLevel}</figcaption>
+          </figure>
           <p>${displayWorld.plan.core}</p>
           <div class="tag-row">
             ${displayThreats.map((threat) => `<span class="tag">${threat}</span>`).join("")}

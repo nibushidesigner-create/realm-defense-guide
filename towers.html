@@ -21,7 +21,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=tower-images" />
   </head>
   <body data-page-title="towersTitle">
     <header class="topbar">
@@ -62,6 +62,29 @@
             <p class="eyebrow">Tower Planning Notes</p>
             <h2>Gold efficiency matters more than filling every slot</h2>
             <p>Realm Defense rewards tower placement discipline. A fully upgraded tower in the wrong lane often performs worse than two modest towers placed where enemies are slowed, blocked, or forced through a long curve.</p>
+          </div>
+          <div class="tower-visual-grid">
+            <figure class="tower-visual-card">
+              <img src="./assets/maps/1.webp" alt="World 1 map example for early tower coverage" loading="lazy" />
+              <figcaption>
+                <strong>Early coverage</strong>
+                <span>Use cheap towers to cover the longest shared road before buying luxury upgrades.</span>
+              </figcaption>
+            </figure>
+            <figure class="tower-visual-card">
+              <img src="./assets/maps/60.webp" alt="World 3 map example for flying boss and anti-air tower planning" loading="lazy" />
+              <figcaption>
+                <strong>Air pressure</strong>
+                <span>Flying routes need dedicated anti-air and hero attention instead of only ground blockers.</span>
+              </figcaption>
+            </figure>
+            <figure class="tower-visual-card">
+              <img src="./assets/maps/170.webp" alt="World 6 map example for tower support and late-game kill zone planning" loading="lazy" />
+              <figcaption>
+                <strong>Late kill zone</strong>
+                <span>Upgrade fewer high-impact towers where control, buffs, and enemy path time overlap.</span>
+              </figcaption>
+            </figure>
           </div>
           <div class="editorial-grid">
             <article class="editorial-card">
@@ -145,6 +168,6 @@
 
     <script src="./traffic-config.js"></script>
     <script src="./traffic-analytics.js"></script>
-    <script src="./app.js"></script>
+    <script src="./app.js?v=tower-images"></script>
   </body>
 </html>
