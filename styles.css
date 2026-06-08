@@ -1676,6 +1676,11 @@ footer strong {
   max-width: 860px;
 }
 
+.blog-article h1 {
+  font-size: clamp(38px, 6vw, 72px);
+  line-height: 1.08;
+}
+
 .blog-article h3 {
   margin-top: 34px;
   color: var(--accent);
@@ -1695,6 +1700,10 @@ footer strong {
 
 .blog-article-secondary {
   border-top: 1px solid var(--line);
+}
+
+[data-blog-lang][hidden] {
+  display: none;
 }
 
 .blog-callout {

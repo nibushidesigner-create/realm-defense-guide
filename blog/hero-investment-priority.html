@@ -17,10 +17,10 @@
     <header class="topbar">
       <a class="brand" href="../index.html" aria-label="Realm Defense guide home"><span class="brand-mark">RD</span><span><strong>Realm Defense</strong><small>Guide Database</small></span></a>
       <nav class="nav" aria-label="Primary navigation"><a href="../heroes.html">Heroes</a><a href="../stages.html">Stages</a><a href="../towers.html">Towers</a><a href="../lineups.html">Lineups</a><a href="../tournament.html">Tournament</a><a class="active" href="./">Blog</a></nav>
-      <div class="language-switch" aria-label="Language switcher"><a class="language-option active" href="#english">EN</a><a class="language-option" href="#chinese">中文</a></div>
+      <div class="language-switch" aria-label="Language switcher"><button class="language-option active" type="button" data-lang="en">EN</button><button class="language-option" type="button" data-lang="zh">中文</button></div>
     </header>
     <main>
-      <article class="blog-article" id="english">
+      <article class="blog-article" data-blog-lang="en">
         <p class="eyebrow">Hero Strategy</p>
         <h1>Hero investment priority for new and returning players</h1>
         <p>Hero investment in Realm Defense should start with problems, not with a tier list. A hero is valuable when they solve the maps you are actually failing: flyers that bypass ground towers, fast runners that escape the kill zone, armored waves that survive too long, or Boss stages that pull your heroes away from normal lanes.</p>
@@ -30,17 +30,38 @@
         <h2>Mid-game: fill missing roles</h2>
         <p>As worlds become more specialized, hero roles matter more. Some maps ask for summons to stall several lanes, others ask for direct Boss damage, and others need cooldown control so a dangerous wave cannot cross the map during a skill gap. This is where a roster plan beats random upgrades.</p>
         <p>Before investing, ask which failure appears most often. If flyers are the issue, prioritize anti-air and ranged coverage. If bulky enemies survive the main zone, add burst or armor-breaking pressure. If split lanes collapse, choose heroes who can move, summon, or delay without constant attention.</p>
+        <h2>Rank checkpoints matter more than owning everyone</h2>
+        <p>A common mistake is unlocking many heroes while none of them reach the rank where their kit becomes reliable. A lower number of well-ranked heroes usually clears more content than a wide roster of unfinished picks. Before buying a new hero, check whether your current core is missing a role or merely missing ranks.</p>
+        <p>If a hero gains a key control upgrade, summon improvement, or cooldown improvement at a specific rank, that checkpoint should be treated like a real build goal. Stop halfway only when another hero solves a more urgent problem, such as anti-air coverage for a world full of flyers or a Boss answer for a campaign wall.</p>
+        <h2>Use a three-slot roster test</h2>
+        <p>Before a difficult stage, describe your team in three jobs: lane holder, wave controller, and pressure finisher. If two heroes are doing the same job while one enemy type is unanswered, the team is probably inefficient. This test is especially useful when choosing between a favorite hero and the hero the map actually needs.</p>
+        <p>For example, a lineup with two fragile damage heroes and no delay may look strong on paper but fail against runners. A lineup with control, summons, and no burst may survive long but struggle against Bosses. Good investment means your roster can rotate between these patterns without starting from zero.</p>
         <h2>Tournament: blessed heroes change the math</h2>
         <p>Tournaments are a separate evaluation. A hero that is average in campaign can become a weekly anchor when blessed. The question is not only “is this hero strong?” but “what job can the blessed hero perform on this map?” Sometimes the best plan is to let the blessed hero hold a small lane while two consistent heroes handle the scoring route.</p>
         <p>The safest investment path is to build a core roster first, then widen toward tournament flexibility. A few highly useful heroes will carry more progress than many half-built heroes, but long-term tournament play rewards having enough options to match map type and blessed rotation.</p>
       </article>
-      <section class="blog-article blog-article-secondary" id="chinese" lang="zh-CN">
-        <p class="eyebrow">中文摘要</p>
-        <h2>英雄培养不要只看强度榜</h2>
-        <p>先判断自己经常输在哪里：飞行怪、快速怪、Boss 压力、还是多路线漏怪。前期优先培养能稳定控场、补空中、保路线的英雄；中期补齐 Boss 处理和分路能力；锦标赛则根据祝福英雄和地图类型调整阵容。</p>
+      <section class="blog-article" data-blog-lang="zh" lang="zh-CN" hidden>
+        <p class="eyebrow">英雄攻略</p>
+        <h1>新手和回坑玩家的英雄培养优先级</h1>
+        <p>Realm Defense 的英雄培养不应该从强度榜开始，而应该从你当前卡关的原因开始。你是被飞行怪绕过地面塔，还是被快怪冲出火力区？是厚血怪打不动，还是 Boss 把英雄牵走导致普通路线漏怪？能解决当前问题的英雄，才是这个阶段最有价值的英雄。</p>
+        <h2>前期：先养稳定工具人</h2>
+        <p>新账号最需要的是稳定控场，而不是单纯追求高伤害。控制能让敌人在塔里停得更久，也能让失误更容易补救。能减速、阻挡、召唤或保护弱路线的英雄，通常比只会打单点伤害的英雄更适合前期推进。</p>
+        <p>前期不要把资源平均分给所有已解锁英雄。先做一个小核心：一个能守线或接怪的英雄，一个能补飞行或远程输出的英雄，一个能在危险波次暂停敌人的控场英雄。这样多数主线关卡都会更稳定。</p>
+        <h2>中期：补齐缺失定位</h2>
+        <p>进入中期后，不同世界会开始考验不同机制。有些地图需要召唤物拖多路线，有些地图需要 Boss 爆发，有些地图需要技能循环来防止快怪在技能空档冲线。这个阶段不要随机升级，而是看你的队伍缺哪个功能。</p>
+        <p>如果经常被飞行怪打穿，就补防空和远程覆盖；如果厚血怪总能走出主火力区，就补爆发或破甲；如果分路崩盘，就优先考虑能移动、召唤或延迟敌人的英雄。</p>
+        <h2>觉醒节点比“拥有更多英雄”更重要</h2>
+        <p>很多玩家会花钻石解锁一堆英雄，但每个都没到关键觉醒。实际推关时，少数几个到达关键节点的英雄，通常比一堆半成品更强。买新英雄前，先确认当前核心到底是缺定位，还是只是缺觉醒等级。</p>
+        <p>如果某个英雄在特定觉醒获得关键控制、召唤强化或冷却改善，就应该把这个节点当成明确目标。只有当另一个英雄能解决更紧急的问题时，才值得中途转向。</p>
+        <h2>用“三个岗位”检查阵容</h2>
+        <p>进困难关之前，给三名英雄分配岗位：守线、控波、终结压力。如果两个英雄做的是同一件事，而某类敌人完全没人处理，这套阵容就很可能不够高效。</p>
+        <p>比如两个脆皮输出加一个输出，看起来伤害很高，但遇到快怪会崩；全是控制和召唤，可能能拖很久，但打 Boss 会慢。好的培养路线，是让你的英雄池可以在这些阵容模式之间切换。</p>
+        <h2>锦标赛：祝福英雄会改变判断</h2>
+        <p>锦标赛是另一套评估逻辑。平时一般的英雄，本周被祝福后也可能成为核心。你要问的不是“这个英雄平时强不强”，而是“这个祝福英雄在这张图能承担什么工作”。有时最好的用法不是让他当主 C，而是让他守一条小路、补控制或清漏怪。</p>
+        <p>最稳的路线是先把主线核心养起来，再逐步扩展锦标赛英雄池。少数高价值英雄能帮你推进更多内容，但长期锦标赛确实需要更多可替换选择。</p>
       </section>
     </main>
     <footer><strong>Realm Defense Guide Database</strong><span class="source-links"><a href="./index.html">Blog</a><a href="../heroes.html">Heroes</a><a href="../about.html">About</a><a href="../privacy.html">Privacy</a></span><p class="fan-disclaimer">Unofficial fan guide. Realm Defense and related assets belong to their respective owners; this site is not affiliated with or endorsed by the game publisher.</p></footer>
-    <script src="../traffic-config.js"></script><script src="../traffic-analytics.js"></script>
+    <script src="../traffic-config.js"></script><script src="../traffic-analytics.js"></script><script src="../blog.js"></script>
   </body>
 </html>

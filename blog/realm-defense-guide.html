@@ -41,8 +41,8 @@
         <a class="active" href="./">Blog</a>
       </nav>
       <div class="language-switch" aria-label="Language switcher">
-        <a class="language-option active" href="#english">EN</a>
-        <a class="language-option" href="#chinese">中文</a>
+        <button class="language-option active" type="button" data-lang="en">EN</button>
+        <button class="language-option" type="button" data-lang="zh">中文</button>
       </div>
     </header>
 
@@ -51,7 +51,7 @@
         <div class="blog-hero-media" aria-hidden="true">
           <img src="../assets/maps/1.webp" alt="" width="2312" height="1734" />
         </div>
-        <div class="blog-hero-copy">
+        <div class="blog-hero-copy" data-blog-lang="en">
           <p class="eyebrow">Realm Defense Fan Guide</p>
           <h1>One guide for heroes, stages, towers, lineups, and tournament runs.</h1>
           <p>
@@ -62,9 +62,20 @@
             <a class="secondary-action" href="../heroes.html">Compare Heroes</a>
           </div>
         </div>
+        <div class="blog-hero-copy" data-blog-lang="zh" lang="zh-CN" hidden>
+          <p class="eyebrow">Realm Defense 玩家攻略</p>
+          <h1>英雄、关卡、防御塔、阵容和锦标赛的一站式攻略。</h1>
+          <p>
+            Realm Defense Guide Database 面向想快速解决问题的玩家：该培养哪个英雄、某关为什么卡住、防御塔该先升哪里。
+          </p>
+          <div class="hero-actions">
+            <a class="primary-action" href="../stages.html">查看关卡攻略</a>
+            <a class="secondary-action" href="../heroes.html">比较英雄</a>
+          </div>
+        </div>
       </article>
 
-      <section class="blog-article" id="english">
+      <section class="blog-article" data-blog-lang="en">
         <p class="eyebrow">Blog Post</p>
         <h2>Why Realm Defense players need a practical guide database</h2>
         <p>
@@ -94,6 +105,14 @@
           The tournament section focuses on weekly planning: how to judge the blessed hero, read the map, build a main kill zone, and choose between control, Boss burst, and tower-support lineup patterns.
         </p>
 
+        <h3>How to use the site during an actual run</h3>
+        <p>
+          Start with the stage page when you are stuck, because the map and threat type decide most decisions. Then compare heroes by job: control, anti-air, burst, summons, support, or tanking. Finally, check the tower page to decide whether the current map wants early cheap coverage, a delayed upgrade, or a concentrated kill zone.
+        </p>
+        <p>
+          For repeated failures, do not change everything at once. Record the first failed wave, the enemy type, and the position of the leak. Use the guide to change one variable: hero placement, tower upgrade order, or skill timing. This is the fastest way to turn a hard stage into a solved pattern.
+        </p>
+
         <h3>Best for new and returning players</h3>
         <p>
           New players can use the site to understand what to upgrade first and how to avoid common leaks. Returning players can quickly review maps, stage patterns, and team ideas before pushing campaign or revisiting difficult levels.
@@ -105,17 +124,37 @@
         </div>
       </section>
 
-      <section class="blog-article blog-article-secondary" id="chinese" lang="zh-CN">
-        <p class="eyebrow">中文推广文案</p>
-        <h2>Realm Defense 攻略资料站：英雄、关卡、地图、防御塔和阵容搭配</h2>
+      <section class="blog-article" data-blog-lang="zh" lang="zh-CN" hidden>
+        <p class="eyebrow">攻略总览</p>
+        <h2>Realm Defense 攻略资料站：英雄、关卡、地图、防御塔和锦标赛</h2>
         <p>
-          如果你在玩 Realm Defense，经常会遇到这些问题：哪个英雄值得培养？某个关卡应该怎么摆塔？飞行怪、Boss、快速怪怎么处理？这个攻略站把英雄能力、关卡地图、世界机制、防御塔节奏和阵容搭配整理到一起，方便新手和回坑玩家快速查。
+          Realm Defense 看起来只是建塔、放英雄、守住波次，但玩到后面会越来越考验路线判断、技能时机、飞行怪处理、Boss 阶段和不同世界的塔机制。一个有用的攻略站不应该只列数据，还应该帮助玩家在关卡里做更好的决定。
         </p>
         <p>
-          网站默认英文，也支持中文切换。关卡攻略按世界做了 tab，默认显示世界 1，不会一次铺满全部地图；英雄介绍包含头像、定位、技能价值和培养建议；阵容部分整理了新手推进、控制保命、Boss 处理、后期塔辅等方向；锦标赛攻略则补充了祝福英雄、本周地图判断、冲分节奏和常见失误。
+          Realm Defense Guide Database 把玩家最常查的内容整理成几个独立部分：英雄能力解析、逐关地图攻略、防御塔世界机制、阵容搭配和锦标赛准备。页面默认英文，也支持中文切换，适合推关前快速查路线、塔位和英雄组合。
+        </p>
+        <h3>英雄解析强调实际用途</h3>
+        <p>
+          英雄页面覆盖 24 位英雄，包含定位、解锁、主动技能、培养优先级和使用场景。重点不是只给一个强度标签，而是说明英雄适合处理什么问题：防空、控场、召唤、Boss 爆发、补漏、塔辅或前排承伤。
+        </p>
+        <h3>关卡攻略按世界组织</h3>
+        <p>
+          关卡页面按世界做 tab，不会一次铺满所有地图。玩家可以用搜索和难点筛选快速找到 Boss、飞行怪、快怪、召唤波次或其他压力点。地图图像和文字攻略结合，方便判断敌人路线和主火力区。
+        </p>
+        <h3>防御塔和阵容服务于真实推进</h3>
+        <p>
+          每个世界的塔机制都不同。前期强调便宜覆盖和阻挡，中期开始重视净化、减速、召唤和 Boss 单体火力，后期则更吃塔辅和英雄配合。阵容页面会把新手推进、控场保命、Boss 处理、后期塔辅和世界 7 压力拆开讲。
+        </p>
+        <h3>锦标赛关注每周冲分</h3>
+        <p>
+          锦标赛页面不是让玩家固定套主线队伍，而是围绕祝福英雄、地图类型、技能节奏和失败波次来准备。好的锦标赛尝试应该知道主冲分路线在哪里、哪些波次必须留技能、祝福英雄到底承担什么工作。
+        </p>
+        <h3>实际使用建议</h3>
+        <p>
+          卡关时先看关卡页，因为地图和敌人类型决定大部分打法；再看英雄页，确认队伍缺的是控场、防空、爆发还是阻挡；最后看防御塔页，决定应该早升塔、保留金币，还是集中打造一个主火力区。
         </p>
         <p>
-          这是一个非官方粉丝攻略站，适合收藏备用，也适合在推关前快速看一眼路线、塔位和英雄组合。
+          如果连续失败，不要一次改完整套打法。记录第一个失败波次、漏怪类型和漏怪位置，然后只改一个变量：英雄站位、升塔顺序或技能释放时机。这样每次重试都能积累明确经验。
         </p>
         <div class="blog-callout">
           <strong>网站地址：</strong>
@@ -140,5 +179,6 @@
     </footer>
     <script src="../traffic-config.js"></script>
     <script src="../traffic-analytics.js"></script>
+    <script src="../blog.js"></script>
   </body>
 </html>

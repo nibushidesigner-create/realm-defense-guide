@@ -17,10 +17,10 @@
     <header class="topbar">
       <a class="brand" href="../index.html" aria-label="Realm Defense guide home"><span class="brand-mark">RD</span><span><strong>Realm Defense</strong><small>Guide Database</small></span></a>
       <nav class="nav" aria-label="Primary navigation"><a href="../heroes.html">Heroes</a><a href="../stages.html">Stages</a><a href="../towers.html">Towers</a><a href="../lineups.html">Lineups</a><a href="../tournament.html">Tournament</a><a class="active" href="./">Blog</a></nav>
-      <div class="language-switch" aria-label="Language switcher"><a class="language-option active" href="#english">EN</a><a class="language-option" href="#chinese">中文</a></div>
+      <div class="language-switch" aria-label="Language switcher"><button class="language-option active" type="button" data-lang="en">EN</button><button class="language-option" type="button" data-lang="zh">中文</button></div>
     </header>
     <main>
-      <article class="blog-article" id="english">
+      <article class="blog-article" data-blog-lang="en">
         <p class="eyebrow">Tournament Strategy</p>
         <h1>Weekly tournament prep checklist</h1>
         <p>A strong Realm Defense tournament run starts before the first wave. The weekly map, blessed hero, enemy mix, and tower layout decide whether the run should focus on control, burst, tower scaling, or safe cleanup. Using a checklist prevents wasted attempts.</p>
@@ -28,18 +28,36 @@
         <p>The blessed hero does not always have to carry the whole map. If they match the map, make them the center of the plan. If they are awkward, give them a narrower job: hold a side lane, trigger a cooldown at a fixed wave, or clean leaks while stronger heroes control the main route.</p>
         <h2>2. Identify the score route</h2>
         <p>Look for the lane where most enemies can be grouped and delayed. That route should receive the best tower upgrades and most hero attention. Side lanes need just enough defense to survive without stealing too many resources from the scoring zone.</p>
-        <h2>3. Plan cooldown rhythm</h2>
+        <h2>3. Classify the map type</h2>
+        <p>A long single-exit map rewards control chains and tower scaling. A split-lane map rewards flexible heroes, summons, and cheaper side-lane insurance. A flyer-heavy map demands anti-air before greed. A Boss-centered map needs saved burst and a normal-wave backup plan.</p>
+        <p>This map type should decide the lineup. Do not force the same team every week. If the map has one strong choke, play control and tower support. If the map is open and short, favor mobility, burst, and leak cleanup. If the blessed hero is weak on the map, reduce their job instead of letting the whole run depend on them.</p>
+        <h2>4. Plan cooldown rhythm</h2>
         <p>Tournament scoring often fails when skills are used on the wrong wave. Choose two or three danger waves and save important control or burst for those moments. If a run fails with all skills on cooldown, the problem may be timing rather than hero choice.</p>
-        <h2>4. Review one variable at a time</h2>
+        <h2>5. Keep an attempt log</h2>
+        <p>Write down the wave number, leak type, hero death, and skill state after each serious attempt. A simple note such as “wave 42 flyers leak while freeze is down” is enough. The next run should answer that note directly.</p>
+        <h2>6. Review one variable at a time</h2>
         <p>After a failed attempt, change one thing: hero position, first upgrade, or skill timing. Changing the whole lineup hides the lesson from the previous run. Consistent score pushing comes from turning each failed wave into a specific adjustment.</p>
       </article>
-      <section class="blog-article blog-article-secondary" id="chinese" lang="zh-CN">
-        <p class="eyebrow">中文摘要</p>
-        <h2>锦标赛先做四个判断</h2>
-        <p>判断祝福英雄负责什么、主冲分路线在哪里、哪些波次必须留技能、失败后只改一个变量。这样每次尝试都有明确目的，比频繁换整套阵容更容易提升分数。</p>
+      <section class="blog-article" data-blog-lang="zh" lang="zh-CN" hidden>
+        <p class="eyebrow">锦标赛攻略</p>
+        <h1>每周锦标赛准备清单</h1>
+        <p>一次好的 Realm Defense 锦标赛冲分，在第一波开始前就已经决定了一半。本周地图、祝福英雄、敌人组合和塔位布局，会决定你应该走控场、爆发、塔辅，还是稳扎稳打的补漏路线。用清单准备，可以减少无意义试错。</p>
+        <h2>1. 定义祝福英雄的工作</h2>
+        <p>祝福英雄不一定要承担全图主 C。如果他和地图机制匹配，就围绕他建阵容；如果他很别扭，就给他一个更窄的任务：守边路、固定波次交技能、或清理漏怪，让更稳定的英雄负责主路线。</p>
+        <h2>2. 找到主冲分路线</h2>
+        <p>观察哪条路线最容易聚怪、减速和反复输出。这条路线应该拿到最好的塔升级和最多英雄注意力。边路只需要足够不漏，不要抢走主火力区的经济。</p>
+        <h2>3. 先判断地图类型</h2>
+        <p>长路线单出口图适合控场链和塔伤成长；多分路图需要机动英雄、召唤物和便宜边路保险；飞行怪多的图要先补防空再贪经济；Boss 核心图需要保留爆发，同时给普通波次留后手。</p>
+        <p>地图类型应该决定阵容，不要每周硬套同一队。如果地图有强交叉点，就偏控场和塔辅；如果地图短而分散，就偏机动、爆发和补漏；如果祝福英雄不适合这张图，就缩小他的职责，而不是让整局都依赖他。</p>
+        <h2>4. 规划技能节奏</h2>
+        <p>锦标赛经常不是输在英雄选择，而是技能用错波次。先选出两三个危险波次，把关键控制或爆发留给它们。如果失败时所有技能都在冷却，问题很可能是节奏，而不是阵容。</p>
+        <h2>5. 记录每次失败</h2>
+        <p>每次认真尝试后，记下波次、漏怪类型、英雄死亡位置和技能状态。比如“42 波飞行怪漏，冰冻还在冷却”就足够了。下一局要直接回答这条记录，而不是随机换队。</p>
+        <h2>6. 一次只改一个变量</h2>
+        <p>失败后只改一个重点：英雄站位、第一座升级塔或技能释放时机。整套阵容全换会掩盖上一局学到的信息。稳定冲分来自把每个失败波次变成一个具体调整。</p>
       </section>
     </main>
     <footer><strong>Realm Defense Guide Database</strong><span class="source-links"><a href="./index.html">Blog</a><a href="../tournament.html">Tournament</a><a href="../about.html">About</a><a href="../privacy.html">Privacy</a></span><p class="fan-disclaimer">Unofficial fan guide. Realm Defense and related assets belong to their respective owners; this site is not affiliated with or endorsed by the game publisher.</p></footer>
-    <script src="../traffic-config.js"></script><script src="../traffic-analytics.js"></script>
+    <script src="../traffic-config.js"></script><script src="../traffic-analytics.js"></script><script src="../blog.js"></script>
   </body>
 </html>

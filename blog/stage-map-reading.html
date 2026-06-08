@@ -17,10 +17,10 @@
     <header class="topbar">
       <a class="brand" href="../index.html" aria-label="Realm Defense guide home"><span class="brand-mark">RD</span><span><strong>Realm Defense</strong><small>Guide Database</small></span></a>
       <nav class="nav" aria-label="Primary navigation"><a href="../heroes.html">Heroes</a><a href="../stages.html">Stages</a><a href="../towers.html">Towers</a><a href="../lineups.html">Lineups</a><a href="../tournament.html">Tournament</a><a class="active" href="./">Blog</a></nav>
-      <div class="language-switch" aria-label="Language switcher"><a class="language-option active" href="#english">EN</a><a class="language-option" href="#chinese">中文</a></div>
+      <div class="language-switch" aria-label="Language switcher"><button class="language-option active" type="button" data-lang="en">EN</button><button class="language-option" type="button" data-lang="zh">中文</button></div>
     </header>
     <main>
-      <article class="blog-article" id="english">
+      <article class="blog-article" data-blog-lang="en">
         <p class="eyebrow">Stage Strategy</p>
         <h1>How to read Realm Defense maps before the first wave</h1>
         <p>A Realm Defense map gives useful information before a single enemy appears. The path length, tower slots, lane merges, flyer route, and exit distance all suggest what kind of plan the stage wants. Reading those signals before spending gold prevents the common mistake of upgrading a tower that will not matter later.</p>
@@ -28,18 +28,38 @@
         <p>The strongest tower zone is usually where several lanes overlap or where enemies stay in range longest. If the map has a bend, a merge, or a slow crossing, that area deserves the first serious upgrades. If tower slots are scattered, place heroes where they can pull enemies back into the shared damage area.</p>
         <h2>Check the flyer problem</h2>
         <p>Flying enemies can make an otherwise strong ground plan fail. Before investing in blockers, identify whether flyers pass over the same kill zone or take a separate route. If they take a separate route, reserve gold and hero attention for that path instead of assuming ground towers will solve it.</p>
+        <h2>Mark the first real danger wave</h2>
+        <p>Not every early wave deserves a reaction. Let the first light waves test your cheap coverage, then mark the first wave that forces a hero skill, leaks through a side lane, or exposes missing anti-air. That wave tells you what the map is really asking for.</p>
+        <p>If the danger wave is early, adjust the opening build. If it is late, keep the opening lean and save gold for a stronger mid-stage upgrade. This distinction keeps you from overbuilding the first path and entering late waves with no flexibility.</p>
         <h2>Separate early leaks from late pressure</h2>
         <p>Not every leak means the whole strategy is wrong. An early fast runner may need a cheap blocker or a hero shift. A late armored wave may need saved skill cooldowns or a stronger central tower. A Boss leak usually means the team spent too much attention on the Boss and forgot normal waves.</p>
+        <h2>Boss maps need two plans</h2>
+        <p>Boss stages require a Boss plan and a normal-wave plan. If all towers and heroes chase the Boss, the regular lanes often fail. Keep the Boss inside a repeatable damage window, but leave one hero, summon, or backline tower responsible for ordinary enemies.</p>
+        <p>The best Boss zone is not always the entrance. It is the place where the Boss can be delayed while towers continue hitting other enemies. When the Boss moves away from that zone, do not follow with every hero unless the exit is already safe.</p>
         <h2>Use retries as data</h2>
         <p>After each failed attempt, write down the first wave that caused real danger, the enemy type, and the position where it escaped. Change only one or two decisions next run. This makes the stage easier to solve because each retry tests a clear idea instead of becoming a random rebuild.</p>
       </article>
-      <section class="blog-article blog-article-secondary" id="chinese" lang="zh-CN">
-        <p class="eyebrow">中文摘要</p>
-        <h2>开局前先读地图</h2>
-        <p>优先找多路线重叠、敌人停留时间长的位置作为主火力区；确认飞行怪是否走独立路线；失败后记录第几波、什么敌人、从哪里漏掉，再针对性调整塔位和技能节奏。</p>
+      <section class="blog-article" data-blog-lang="zh" lang="zh-CN" hidden>
+        <p class="eyebrow">关卡攻略</p>
+        <h1>第一波开始前，先读懂 Realm Defense 地图</h1>
+        <p>一张 Realm Defense 地图在敌人出现前就已经给了很多信息：路线长度、塔位数量、路线汇合点、飞行路线、出口距离，都会暗示这关需要什么打法。开局前先读这些信息，可以避免把金币投入到后面完全没用的位置。</p>
+        <h2>先找共同路线</h2>
+        <p>最强的塔区通常在多条路线重叠、敌人停留时间长、或弯道密集的位置。如果地图有汇合点、S 型弯道或慢速通过区，这里通常值得优先升级。如果塔位分散，就把英雄放在能把敌人拖回主火力区的位置。</p>
+        <h2>确认飞行怪路线</h2>
+        <p>飞行怪会让看似完美的地面防线直接失效。投资兵营和近战阻挡前，先看飞行怪是否经过同一个火力区，还是走独立路线。如果飞行怪走独立路线，就要提前留金币和英雄注意力给那条线。</p>
+        <h2>标记第一个真正危险波次</h2>
+        <p>不是每个早期波次都值得调整。先用便宜塔测试覆盖，观察第一个逼你交技能、从边路漏怪、或暴露防空不足的波次。这个波次才是地图真正提出的问题。</p>
+        <p>如果危险波次很早，就要改开局塔位；如果危险波次很晚，就不要前期过度升级，应该保留金币到中后段集中补强。</p>
+        <h2>区分早期漏怪和后期压力</h2>
+        <p>一次漏怪不代表整套打法都错。早期快怪可能只需要便宜阻挡或英雄换位；后期厚血怪可能需要保留技能或升级中心塔；Boss 关漏怪通常是因为所有注意力都追着 Boss，普通路线没人管。</p>
+        <h2>Boss 图要同时准备两套计划</h2>
+        <p>Boss 关需要一套 Boss 计划，也需要一套普通波次计划。如果所有塔和英雄都追 Boss，普通路线很容易崩。最好的 Boss 火力区不是一定在入口，而是 Boss 能被拖住、同时塔还能打到普通敌人的位置。</p>
+        <p>Boss 离开主火力区后，不要让所有英雄一起追出去，除非出口已经安全。至少留一个英雄、召唤物或后段塔负责普通波次。</p>
+        <h2>把重试当成数据</h2>
+        <p>每次失败后，记录第几波开始危险、是什么敌人、从哪里漏掉。下一次只改一两个变量，例如英雄站位、第一座升级塔、或技能释放时机。这样每次重试都在验证一个明确想法，而不是随机重建。</p>
       </section>
     </main>
     <footer><strong>Realm Defense Guide Database</strong><span class="source-links"><a href="./index.html">Blog</a><a href="../stages.html">Stages</a><a href="../about.html">About</a><a href="../privacy.html">Privacy</a></span><p class="fan-disclaimer">Unofficial fan guide. Realm Defense and related assets belong to their respective owners; this site is not affiliated with or endorsed by the game publisher.</p></footer>
-    <script src="../traffic-config.js"></script><script src="../traffic-analytics.js"></script>
+    <script src="../traffic-config.js"></script><script src="../traffic-analytics.js"></script><script src="../blog.js"></script>
   </body>
 </html>

@@ -17,10 +17,10 @@
     <header class="topbar">
       <a class="brand" href="../index.html" aria-label="Realm Defense guide home"><span class="brand-mark">RD</span><span><strong>Realm Defense</strong><small>Guide Database</small></span></a>
       <nav class="nav" aria-label="Primary navigation"><a href="../heroes.html">Heroes</a><a href="../stages.html">Stages</a><a href="../towers.html">Towers</a><a href="../lineups.html">Lineups</a><a href="../tournament.html">Tournament</a><a class="active" href="./">Blog</a></nav>
-      <div class="language-switch" aria-label="Language switcher"><a class="language-option active" href="#english">EN</a><a class="language-option" href="#chinese">中文</a></div>
+      <div class="language-switch" aria-label="Language switcher"><button class="language-option active" type="button" data-lang="en">EN</button><button class="language-option" type="button" data-lang="zh">中文</button></div>
     </header>
     <main>
-      <article class="blog-article" id="english">
+      <article class="blog-article" data-blog-lang="en">
         <p class="eyebrow">Tower Economy</p>
         <h1>Tower upgrade economy: when to save gold and when to commit</h1>
         <p>Good tower play in Realm Defense is not about filling every slot. It is about putting gold where it produces the most seconds of damage. A tower that shoots enemies through a long curve may outperform a more expensive tower placed near the exit, because range time is part of damage.</p>
@@ -30,16 +30,34 @@
         <p>Saving gold is a strategic choice. If the next wave may include flyers, armored enemies, or fast runners, flexible gold lets you answer the actual threat. Spending early feels safe, but it can leave the wrong tower upgraded when the map changes pressure.</p>
         <h2>Use blockers to multiply damage</h2>
         <p>Blockers and heroes are not only defensive pieces. When placed correctly, they increase tower value by keeping enemies inside range. This is why a modest tower beside a strong hold point can outperform a high-level tower placed where enemies pass too quickly.</p>
+        <h2>World mechanics change the economy</h2>
+        <p>World 1 rewards cheap Archer and Barracks coverage because the game is still teaching lane control. World 2 shifts value toward Thor slow and Mead Hall blocking. World 3 makes Spear plus Crawler delay extremely efficient, while World 4 often values Pyromancer Cleanse more than another damage tower.</p>
+        <p>Later worlds become more specialized. World 5 wants Mushroom control and Geargrinder coverage. World 6 can turn a few high-level towers into the main damage engine with Shrine, Yan, Helios, or Leif support. World 7 asks for Rho, Gamma, and Volari coverage because damage, slow, air control, and slime cleansing all matter at once.</p>
+        <h2>Selling is part of good tower economy</h2>
+        <p>Some stages change after a Boss appears, after a lane becomes safe, or after enemy types rotate. If a tower no longer hits the problem, keeping it just because it was built earlier is wasted economy. Rebuilding is correct when it moves gold from a dead lane into the next danger zone.</p>
         <h2>Commit when the danger is known</h2>
         <p>Once a Boss path, flyer route, or armored wave is confirmed, commit decisively. Upgrade the tower that has the longest window on that enemy type, then support it with hero skills. The best runs combine patience before the threat with strong spending once the threat is clear.</p>
       </article>
-      <section class="blog-article blog-article-secondary" id="chinese" lang="zh-CN">
-        <p class="eyebrow">中文摘要</p>
-        <h2>升塔看“有效输出时间”</h2>
-        <p>不要把钱平均撒满所有塔位。优先升级敌人停留时间最长、英雄和控制能配合的位置；未知波次前保留金币；看到 Boss、飞行怪或高护甲怪后再集中投入。</p>
+      <section class="blog-article" data-blog-lang="zh" lang="zh-CN" hidden>
+        <p class="eyebrow">防御塔经济</p>
+        <h1>防御塔升级经济：什么时候存钱，什么时候集中投入</h1>
+        <p>Realm Defense 的好塔位不是“把每个格子都填满”，而是把金币投到能产生最长有效输出时间的位置。一座在长弯道持续输出的塔，可能比出口旁边更贵的塔更有价值，因为射程内停留时间本身就是伤害的一部分。</p>
+        <h2>先升级共同火力区</h2>
+        <p>第一批关键升级应该投给英雄、减速和塔射程能重叠的位置。敌人被控制时承受伤害，每一枚金币都更有效。如果某座塔只覆盖很短的一段独立路线，先保持低等级，等那条路线真的危险再投入。</p>
+        <h2>未知波次前保留金币</h2>
+        <p>存钱不是浪费，而是一种策略。如果下一波可能出现飞行怪、护甲怪或快怪，保留金币能让你根据真实威胁应对。太早升级会有安全感，但也可能导致错误塔位吃掉经济。</p>
+        <h2>用阻挡放大塔伤</h2>
+        <p>兵营、召唤物和英雄不仅是防守单位，也是在延长塔的输出时间。放在正确位置时，它们能把敌人留在射程内。一个中等等级塔配合强阻挡点，常常比敌人快速经过的高等级塔更有效。</p>
+        <h2>不同世界的经济重点不同</h2>
+        <p>世界 1 更适合便宜 Archer 和 Barracks 覆盖；世界 2 的 Thor 减速和 Mead Hall 阻挡更关键；世界 3 的 Spear 加 Crawler 延迟非常高效；世界 4 很多时候 Pyromancer Cleanse 比再补一座伤害塔更重要。</p>
+        <p>后期世界更强调机制。世界 5 围绕 Mushroom 控制和 Geargrinder 覆盖展开；世界 6 可以靠 Shrine、Yan、Helios、Leif 等塔辅把少数高级塔变成主输出；世界 7 则需要 Rho、Gamma、Volari 同时覆盖输出、减速、防空和清粘液。</p>
+        <h2>卖塔和重建也是经济的一部分</h2>
+        <p>有些关卡在 Boss 出现后会改变路线或塔位，有些边路后期不再危险。如果一座塔已经打不到真正的问题，继续保留只是沉没成本。把金币从无效路线转移到下一波危险区，往往比硬撑原布局更稳。</p>
+        <h2>威胁明确后再果断投入</h2>
+        <p>当 Boss 路线、飞行路线或护甲波次已经明确时，就要集中升级。选择能对目标保持最长输出窗口的塔，再配合英雄技能。最好的打法是威胁出现前有耐心，威胁明确后够果断。</p>
       </section>
     </main>
     <footer><strong>Realm Defense Guide Database</strong><span class="source-links"><a href="./index.html">Blog</a><a href="../towers.html">Towers</a><a href="../about.html">About</a><a href="../privacy.html">Privacy</a></span><p class="fan-disclaimer">Unofficial fan guide. Realm Defense and related assets belong to their respective owners; this site is not affiliated with or endorsed by the game publisher.</p></footer>
-    <script src="../traffic-config.js"></script><script src="../traffic-analytics.js"></script>
+    <script src="../traffic-config.js"></script><script src="../traffic-analytics.js"></script><script src="../blog.js"></script>
   </body>
 </html>

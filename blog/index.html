@@ -41,13 +41,13 @@
         <a class="active" href="./">Blog</a>
       </nav>
       <div class="language-switch" aria-label="Language switcher">
-        <a class="language-option active" href="#english">EN</a>
-        <a class="language-option" href="#chinese">中文</a>
+        <button class="language-option active" type="button" data-lang="en">EN</button>
+        <button class="language-option" type="button" data-lang="zh">中文</button>
       </div>
     </header>
 
     <main>
-      <section class="section-panel page-panel" id="english">
+      <section class="section-panel page-panel" data-blog-lang="en">
         <div class="section-heading">
           <p class="eyebrow">Strategy Blog</p>
           <h1>Realm Defense strategy articles</h1>
@@ -82,15 +82,37 @@
         </div>
       </section>
 
-      <section class="blog-article blog-article-secondary" id="chinese" lang="zh-CN">
-        <p class="eyebrow">中文说明</p>
-        <h2>为什么新增攻略文章</h2>
-        <p>
-          AdSense 对“低价值内容”的判断通常不只看页面数量，也会看内容是否原创、是否能帮助用户解决具体问题。本站现在增加了多篇独立攻略文章，把英雄培养、关卡读图、防御塔经济和锦标赛准备拆开讲，避免只有模板列表和动态数据。
-        </p>
-        <p>
-          后续如果要继续提高审核通过率，建议每周补一篇具体主题文章，例如“世界 3 飞行怪处理”、“Boss 关卡技能释放节奏”、“新手前 30 关资源规划”等，让站点持续有新内容。
-        </p>
+      <section class="blog-article" data-blog-lang="zh" lang="zh-CN" hidden>
+        <p class="eyebrow">攻略博客</p>
+        <h1>Realm Defense 深度攻略文章</h1>
+        <p>这些文章补充资料库背后的判断逻辑：如何读地图、如何培养英雄、什么时候升塔、如何准备每周锦标赛。它们不是简单列表，而是帮助玩家理解“为什么这样打”。</p>
+        <div class="article-grid">
+          <a class="article-card" href="./realm-defense-guide.html">
+            <span>总览</span>
+            <strong>英雄、关卡、防御塔、阵容和锦标赛的一站式攻略</strong>
+            <p>介绍本站如何把常见决策整理成可快速查询的攻略结构。</p>
+          </a>
+          <a class="article-card" href="./hero-investment-priority.html">
+            <span>英雄</span>
+            <strong>新手和回坑玩家的英雄培养优先级</strong>
+            <p>从当前卡关问题出发，判断该优先培养控场、防空、Boss 爆发还是塔辅英雄。</p>
+          </a>
+          <a class="article-card" href="./stage-map-reading.html">
+            <span>关卡</span>
+            <strong>第一波开始前，先读懂地图</strong>
+            <p>用路线、飞行怪、交叉点、Boss 路径和失败记录来调整打法。</p>
+          </a>
+          <a class="article-card" href="./tower-upgrade-economy.html">
+            <span>防御塔</span>
+            <strong>防御塔升级经济：存钱还是投入</strong>
+            <p>理解为什么集中升级主火力区，比平均铺满所有塔位更稳定。</p>
+          </a>
+          <a class="article-card" href="./tournament-prep-checklist.html">
+            <span>锦标赛</span>
+            <strong>每周锦标赛准备清单</strong>
+            <p>围绕祝福英雄、地图类型、技能节奏和失败波次来提高分数。</p>
+          </a>
+        </div>
       </section>
     </main>
 
@@ -105,5 +127,6 @@
     </footer>
     <script src="../traffic-config.js"></script>
     <script src="../traffic-analytics.js"></script>
+    <script src="../blog.js"></script>
   </body>
 </html>
