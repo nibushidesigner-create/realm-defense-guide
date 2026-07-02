@@ -814,6 +814,7 @@ const uiText = {
     navBuilds: "Lineups",
     navTournament: "Tourneys",
     navBlog: "Blog",
+    navContact: "Contact",
     heroEyebrow: "Hero growth · Stage tactics · Tower rhythm",
     heroTitle: "Realm Defense Guide Database",
     heroIntro: "Covers 24 heroes, 7 worlds, and 240 campaign stages, with practical positioning, tower upgrades, and skill timing.",
@@ -908,6 +909,7 @@ const uiText = {
     navBuilds: "阵容",
     navTournament: "锦标赛",
     navBlog: "博客",
+    navContact: "联系",
     heroEyebrow: "英雄养成 · 关卡打法 · 塔位节奏",
     heroTitle: "Realm Defense 攻略资料库",
     heroIntro: "覆盖 24 位英雄、7 个世界和 240 个战役关卡，快速找到可执行的站位、升塔和技能释放节奏。",
@@ -1766,6 +1768,9 @@ function applyUiText() {
   });
   document.querySelectorAll(".language-option").forEach((button) => {
     button.classList.toggle("active", button.dataset.lang === state.lang);
+  });
+  document.querySelectorAll('footer a[href$="contact.html"]').forEach((link) => {
+    link.textContent = t("navContact");
   });
 }
 
