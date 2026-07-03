@@ -13,6 +13,7 @@ const blogLabels = {
     about: "About",
     privacy: "Privacy",
     contact: "Contact",
+    faq: "FAQ",
   },
   zh: {
     brandSub: "攻略资料库",
@@ -26,6 +27,7 @@ const blogLabels = {
     about: "关于",
     privacy: "隐私",
     contact: "联系",
+    faq: "常见问题",
   },
 };
 
@@ -46,6 +48,7 @@ function updateBlogNavigation(lang) {
     if (href.endsWith("about.html")) link.textContent = labels.about;
     if (href.endsWith("privacy.html")) link.textContent = labels.privacy;
     if (href.endsWith("contact.html")) link.textContent = labels.contact;
+    if (href.endsWith("faq.html")) link.textContent = labels.faq;
   });
 }
 
